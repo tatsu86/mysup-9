@@ -1,1 +1,42 @@
-<h1>投稿一覧</h1>
+<div class="container--sm bottom-space">
+
+  <% if flash[:notice] %>
+    <div class="alert alert-danger"><%= flash[:notice] %></div>
+  <% end %>
+  <% if flash[:success] %>
+    <div class="alert alert-primary"><%= flash[:success] %></div>
+  <% end %>
+  
+  <% if @posts.length >= 1 %>
+    <table class="table table-striped">
+      <tbody>
+        <% @posts.each do |post| %>
+          <tr>
+            <td>
+              <div style="border-collapse:collapse;">
+                <div>
+                  <div style="position:relative;color:grey;">
+                  <span class="post-index-date", style="position:absolute;right:0;">
+                    <%= post.created_at.to_s(:datetime_jp) %>
+                  </span>
+                  </div>
+                </div>
+                <%= link_to post, style:'text-decoration:none;' do %>
+                  <div style="width:100%">
+                    <span style="color:black;"><%= post.body %></span>
+                  </div>
+                  <div class="post-index-comment" style="margin-top:10px;"><i class="far fa-comment"></i>
+                    <%= link_to '削除', post, style:"margin-left:5px; color:red", method: :delete, data: { confirm: '削除してもよろしいですか？' } %>
+                  </div>
+                <% end %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p>ツイートがありません。</p>
+  <% end %>
+  <%= link_to (content_tag(:i, '', class:"fas fa-plus-circle", style:"font-size:50px")), new_post_path, class:"btn-add-tweet" %>
+</div>

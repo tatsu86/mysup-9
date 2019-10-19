@@ -1,0 +1,128 @@
+// Place all the styles related to the posts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+//投稿一覧
+@media screen and (max-width: 790px) {
+    .searchBox {
+      width: 100px;
+      border-radius: 4px;
+    }
+  }
+  
+  @media screen and (min-width: 791px) and (max-width: 1024px) {
+    .searchBox {
+      width: 200px;
+      border-radius: 4px;
+    }
+  }
+  
+  @media screen and (min-width: 1025px) {
+    .searchBox {
+      width: 200px;
+      border-radius: 4px;
+    }
+  }
+  
+  .boards__table {
+    tr:hover {
+      cursor: pointer;
+    }
+  }
+  
+  .boards__linkBox {
+    a {
+      margin: 0 8px;
+    }
+  }
+  
+  .boards__searchForm {
+    display: inline-block;
+  }
+  
+  .boards__select {
+    display: inline-block;
+    width: auto;
+  }
+  
+  .curled-box {
+    border-radius: 50%;
+    background-color: black;
+  }
+  
+  .btn-border {
+    display: inline-block;
+    max-width: 180px;
+    text-align: left;
+    border: 2px solid #005FFF;
+    font-size: 16px;
+    color: #005FFF;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 4px;
+    transition: .4s;
+  }
+  
+  .btn-border:hover {
+    background-color: #005FFF;
+    border-color: #0000CD;
+    color: #FFF;
+  }
+  
+  .btn-add-tweet {
+    bottom: 70px;
+    right: 20px;
+    position: fixed;
+    background:white;
+    border-radius: 50%;
+    background-size: cover;
+  }
+  
+  .post-index-date {
+    color: grey;
+    display:inline;
+    text-align:right;
+    height:0px
+  }
+  
+  .post-index-comment {
+    color: grey;
+  }
+  
+  .post-addition-parent {
+    position: relative;
+  }
+  
+  //投稿画面
+  .btn-new-tweet {
+    display: inline-block;
+    text-decoration: none;
+    color: rgba(152,152,152, 0.43);
+    width: 80px;
+    height: 80px;
+    line-height: 80px;
+    font-size: 40px;
+    border-radius: 50%;
+    text-align: center;
+    overflow: hidden;
+    font-weight: bold;
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.66);
+    box-shadow: inset 0 2px 0 rgba(255,255,255,0.5), 0 2px 2px rgba(0, 0, 0, 0.19);
+    border-bottom: solid 2px #b5b5b5;
+  }
+  
+  .btn-new-tweet i {
+    line-height: 80px;
+  }
+  
+  .btn-new-tweet:active {
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 2px 2px rgba(0, 0, 0, 0.19);
+    border-bottom: none;
+  }
+  
+  //詳細画面
+  .post-show-date {
+    bottom: 0;
+    color: grey;
+  }

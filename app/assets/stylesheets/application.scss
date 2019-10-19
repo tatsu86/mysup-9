@@ -2,8 +2,8 @@
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
  *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
  *
  * You're free to add application-wide styles to this file and they'll appear at the bottom of the
  * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
@@ -11,6 +11,118 @@
  * It is generally better to create a new file per style scope.
  *
  */
-
  @import "bootstrap";
+//  @import "posts";
+//  @import "comments";
+//  @import "font-awesome-sprockets";
+//  @import "font-awesome";
  
+ .font-awesome {
+   font-family: FontAwesome;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: inherit;
+ }
+ 
+ body {
+   display: flex;
+   flex-direction: column;
+   min-height: 100vh;
+ }
+ 
+ footer {
+   margin-top: auto;
+ }
+ 
+ .back-image-capsules {
+   box-sizing: border-box;
+   background-image: image-url('capsules');
+   background-size: cover;
+   width: 100%;
+   height: 700px;
+   // padding-top: 63.5%;
+ }
+ 
+ .glyphicon-right {
+   text-align: right;
+   font-size: 20px;
+ }
+ 
+ .btn-tweet {
+   color: white;
+   background-color: rgb(29, 161, 242);
+   border-radius: 25px;
+   
+   display: inline-block;
+   padding: 7px 20px;
+   
+   text-decoration: none;
+ 
+ }
+ 
+ .btn-square-little-rich {
+   position: relative;
+   display: inline-block;
+   padding: 0.25em 0.5em;
+   text-decoration: none;
+   color: #FFF;
+   background: #007bff;/*色*/
+   border: solid 1px #0f9ada;/*線色*/
+   border-radius: 4px;
+   box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
+   text-shadow: 0 1px 0 rgba(0,0,0,0.2);
+ }
+ 
+ .btn-square-little-rich:active {
+   /*押したとき*/
+   border: solid 1px #03A9F4;
+   box-shadow: none;
+   text-shadow: none;
+ }
+ 
+ .footer-menu {
+   width: 100%;
+   height: 60px;
+   position: fixed;
+   bottom: 0;
+   z-index: 100;
+ }
+ 
+ .btn-footer {
+   width: 25%;
+ }
+ 
+ .bgclear {
+   background: rgba(255,255,255,0.7);
+   border-radius: 10px;
+ }
+ 
+ //スマホ用
+ @media screen and (max-width: 790px) {
+   .bottom-space {
+     margin-bottom: 90px;
+   }
+ }
+ 
+ //タブレット用
+ @media screen and (min-width: 791px) and (max-width: 1024px) {
+   .bottom-space {
+     margin-bottom: 90px;
+   }
+ }
+ 
+ //PC用
+ @media screen and (min-width: 1025px) {
+   .footer-visible {
+     visibility: hidden;
+   }
+   
+   .container--sm {
+     max-width: 1000px;
+     width: 100%;
+     padding-right: 15px;
+     padding-left: 15px;
+     margin-right: auto;
+     margin-left: auto;
+   }
+ }
