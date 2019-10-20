@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
-  # root 'posts#index'
+  get 'home/index'
+  root 'home#index'
+  get 'mypage', to: 'user#show'
+  get 'users/index', to: 'users#index'
+  post 'login', to: 'sessions#create'
+  delete 'logout', to: 'sessions#destroy'
 
-  resources :posts, only: %i[index new create show destroy]
+  resources :posts
+  resources :comments, only: %i[create  destroy]
+  resources :users, only: %i[new create edit update]
 end

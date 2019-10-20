@@ -1,0 +1,7 @@
+<% if @current_user %>
+    <%= render template: "/posts/index" %>
+<% else %>
+    <div class="back-image-capsules">
+    <%= render partial: 'users/login_form' %>
+    </div>
+<% end %>

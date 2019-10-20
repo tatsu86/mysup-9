@@ -14,9 +14,9 @@ gem 'bootstrap', '~> 4.0.0'
 gem 'mini_racer'
 gem 'rails-i18n'
 # gem 'ransack'
-# gem 'bcrypt', '~> 3.1.7'
-# gem 'kaminari'
-# gem 'font-awesome-sass', '~> 5.4.1'
+gem 'bcrypt', '~> 3.1.7'
+gem 'kaminari'
+gem 'font-awesome-sass', '~> 5.4.1'
 # gem 'carrierwave'
 # gem 'aws-sdk-s3', require: false
 

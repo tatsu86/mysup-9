@@ -9,6 +9,12 @@
   </head>
 
   <body>
+    <%= render 'header' %>
     <%= yield %>
+    <% if @current_user %>
+      <div class="footer-visible">
+        <%= render 'footer' %>  
+      </div>
+    <% end %>
   </body>
 </html>

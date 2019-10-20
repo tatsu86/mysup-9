@@ -1,11 +1,17 @@
 <div class="container--sm bottom-space">
+    <div class="d-flex align-items-center" style="margin: 5px 15px">
+        <%= form_tag(posts_path,:method => 'get') do %>
+            <%= text_field_tag :search, params[:search], class:"searchBox font-awesome fa", placeholder:"\uf002検索" %>
+            <%= submit_tag '検索', :name => nil, style:"display:none;" %>
+        <% end %>
+    </div>
 
-  <% if flash[:notice] %>
-    <div class="alert alert-danger"><%= flash[:notice] %></div>
-  <% end %>
-  <% if flash[:success] %>
-    <div class="alert alert-primary"><%= flash[:success] %></div>
-  <% end %>
+    <% if flash[:notice] %>
+        <div class="alert alert-danger"><%= flash[:notice] %></div>
+    <% end %>
+    <% if flash[:success] %>
+        <div class="alert alert-primary"><%= flash[:success] %></div>
+    <% end %>
   
   <% if @posts.length >= 1 %>
     <table class="table table-striped">
@@ -35,6 +41,7 @@
         <% end %>
       </tbody>
     </table>
+    <%= paginate @posts %>
   <% else %>
     <p>ツイートがありません。</p>
   <% end %>
