@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+    before_action :set_target_post, only: [:show, :update, :destroy]
+
     def index
         @posts = @posts.search(params[:search])
     end
@@ -18,6 +20,10 @@ class PostsController < ApplicationController
         end
     end
 
+    def show
+        @comment = Comment.new(post_id: @post.id)
+    end
+
     def destroy
         @post.destroy
         redirect_to posts_path, flash: { notice: "削除しました。" }
@@ -26,5 +32,9 @@ class PostsController < ApplicationController
     private
     def post_params
         params.require(:post).permit(:body, :user_id)
+    end
+
+    def set_target_post
+        @post = Post.find(params[:id])
     end
 end

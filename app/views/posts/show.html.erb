@@ -1,0 +1,12 @@
+<div class="container">
+  <h2>詳細画面</h2>
+  <%= render @post %>
+  <% if @post.comments.count > 0 %>
+    <div class="p-comment__list">
+      <div class="p-comment__listTitle">コメント</div>
+      <%= render @post.comments %>
+    </div>
+  <% end %>
+  
+  <%= render partial: 'comments/form', locals: { comment: @comment } %>
+</div>

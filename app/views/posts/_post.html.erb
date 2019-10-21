@@ -1,0 +1,10 @@
+<div class="card">
+  <div class="card-header">
+    <p><%= post.user.name %></p>
+  </div>
+  <div class="card-body">
+    <p class="card-text"><%= simple_format(post.body) %></p>
+
+    <div class="post-show-date"><%= post.created_at.to_s(:datetime_jp) %></div>
+  </div>
+</div>
