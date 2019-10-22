@@ -11,10 +11,13 @@
  * It is generally better to create a new file per style scope.
  *
  */
- @import "bootstrap";
- @import "font-awesome-sprockets";
- @import "font-awesome";
- 
+@import "bootstrap";
+@import "post";
+@import "comments";
+@import "users";
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
  .font-awesome {
    font-family: FontAwesome;
    font-style: normal;
