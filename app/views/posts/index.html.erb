@@ -3,6 +3,15 @@
         <%= form_tag(posts_path,:method => 'get') do %>
             <%= text_field_tag :search, params[:search], class:"searchBox font-awesome fa", placeholder:"\uf002検索" %>
             <%= submit_tag '検索', :name => nil, style:"display:none;" %>
+            <%= select_tag :tag_id,
+              options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
+              {
+                prompt: 'タグで絞り込み',
+                class: 'form-control boards__select',
+                style:'margin-left: 4px;',
+                onchange: 'submit(this.form);'
+              }
+            %>
         <% end %>
     </div>
 
@@ -22,9 +31,14 @@
               <div style="border-collapse:collapse;">
                 <div>
                   <div style="position:relative;color:grey;">
-                  <span class="post-index-date", style="position:absolute;right:0;">
-                    <%= post.created_at.to_s(:datetime_jp) %>
-                  </span>
+                    <span class="post-index-date", style="position:absolute;right:0;">
+                      <%= post.created_at.to_s(:datetime_jp) %>
+                    </span>
+                  </div>
+                  <div style="display:inline; text-align:left; height:0px">
+                    <% post.tags.each do |tag| %>
+                      <span class="badge badge-primary"><%= tag.name %></span>
+                    <% end %>
                   </div>
                 </div>
                 <%= link_to post, style:'text-decoration:none;' do %>
