@@ -16,7 +16,10 @@ class PostsController < ApplicationController
             flash[:success] = "投稿しました。"
             redirect_to posts_path
         else
-            redirect_to new_post_path
+            redirect_to new_post_path, flash: {
+                post: post,
+                error_messages: post.errors.full_messages
+            }
         end
     end
 
