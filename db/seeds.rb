@@ -1,10 +1,3 @@
-# User.create([
-#     { name: 'テストユーザー' },
-#     { email: 'hayashideveloper@gmail.com' },
-#     { password_digest: '12345678' },
-#     { unique_id: '@test_user' }
-# ])
-
 Tag.create([
     { name: 'プロテイン', sort: 1 },
     { name: 'ダイエット', sort: 2 },
