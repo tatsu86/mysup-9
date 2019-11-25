@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
     def create
       comment = Comment.new(comment_params)
       if comment.save
-        flash[:notice] = 'コメントを投稿しました。'
+        flash[:success] = 'コメントを投稿しました。'
         redirect_to comment.post
       else
         redirect_back fallback_location: root_path, flash: {
@@ -13,7 +13,7 @@ class CommentsController < ApplicationController
     end
   
     def destroy
-      comment = Comment.find(params[:id])
+      comment = Comment.find(params[:id])1
       comment.delete
       redirect_to comment.post, flash: { notice: 'コメントを削除しました。' }
     end
