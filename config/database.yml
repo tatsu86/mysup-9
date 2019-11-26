@@ -51,6 +51,6 @@ production:
   <<: *default
   adapter: mysql2
   encoding: utf-8
-  database: mysup-9_production
-  username: root
-  password: password
+  database: <%= ENV['DB_NAME'] %>
+  username: <%= ENV['DB_USERNAME'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
