@@ -13,7 +13,7 @@ class CommentsController < ApplicationController
     end
   
     def destroy
-      comment = Comment.find(params[:id])1
+      comment = Comment.find(params[:id])
       comment.delete
       redirect_to comment.post, flash: { notice: 'コメントを削除しました。' }
     end
