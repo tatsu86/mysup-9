@@ -1,0 +1,63 @@
+<div class="container--sm bottom-space">
+    <div class="d-flex align-items-center" style="margin: 5px 15px">
+        <%= form_tag(posts_search_path,:method => 'get') do %>
+            <%= text_field_tag :search, params[:search], class:"searchBox font-awesome fa", placeholder:"\uf002検索" %>
+            <%= submit_tag '検索', :name => nil, style:"display:none;" %>
+            <%= select_tag :tag_id,
+              options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
+              {
+                prompt: 'タグで絞り込み',
+                class: 'form-control boards__select',
+                style:'margin-left: 4px;',
+                onchange: 'submit(this.form);'
+              }
+            %>
+        <% end %>
+    </div>
+
+    <% if flash[:notice] %>
+        <div class="alert alert-danger"><%= flash[:notice] %></div>
+    <% end %>
+    <% if flash[:success] %>
+        <div class="alert alert-primary"><%= flash[:success] %></div>
+    <% end %>
+  
+  <% if @search_params == false %>
+    <p>検索してください</p>
+  <% else %>
+    <% if @search_posts.length >= 1 %>
+        <table class="table table-striped">
+        <tbody>
+            <% @search_posts.each do |post| %>
+            <tr>
+                <td>
+                <%= link_to post, style:'text-decoration:none;' do %>
+                    <div style="border-collapse:collapse;">
+                    <div style="height:24px">
+                        <div style="position:relative;color:grey;">
+                        <span>ユーザー</span>
+                        <% post.tags.each do |tag| %>
+                            <span class="badge badge-primary"><%= tag.name %></span>
+                        <% end %>
+                        <span class="post-index-date", style="position:absolute;right:0;">
+                            <%= post.created_at.to_s(:datetime_jp) %>
+                        </span>
+                        </div>
+                    </div>
+                    <div style="width:100%">
+                        <span style="color:black;"><%= post.body %></span>
+                    </div>
+                    </div>
+                <% end %>
+                </td>
+            </tr>
+            <% end %>
+        </tbody>
+        </table>
+        <%= paginate @search_posts %>
+    <% else %>
+        <p>ツイートがありません。</p>
+    <% end %>
+  <% end %>
+  <%= link_to (content_tag(:i, '', class:"fas fa-plus-circle", style:"font-size:50px")), new_post_path, class:"btn-add-tweet" %>
+</div>

@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   end
   
   def posts_all
-    @posts = params[:tag_id].present? ? Tag.find(params[:tag_id]).posts : Post.all
+    @posts = Post.all
     @posts = @posts.order(created_at: :desc).page(params[:page])
   end
 end

@@ -2,7 +2,18 @@ class PostsController < ApplicationController
     before_action :set_target_post, only: [:show, :update, :destroy]
 
     def index
-        @posts = @posts.search(params[:search])
+
+    end
+
+    def search
+        if params[:search].blank? == false || params[:tag_id].blank? == false
+            @search_params = true
+        else
+            @search_params = false
+        end
+        @search_posts = params[:tag_id].present? ? Tag.find(params[:tag_id]).posts : Post.all
+        @search_posts = @search_posts.search(params[:search])
+        @search_posts = @search_posts.order(created_at: :desc).page(params[:page])
     end
 
     def new

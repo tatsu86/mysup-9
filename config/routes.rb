@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   get 'home/index'
   root 'home#index'
   get 'mypage', to: 'users#show'
-  get 'users/index', to: 'users#index'
+  get 'posts/search', to: 'posts#search'
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
 
