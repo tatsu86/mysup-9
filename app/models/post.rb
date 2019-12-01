@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: posts
+#
+#  id         :integer          not null, primary key
+#  body       :string(255)
+#  user_id    :integer
+#  image      :string(255)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class Post < ApplicationRecord
     belongs_to :user
     has_many :comments, dependent: :delete_all
