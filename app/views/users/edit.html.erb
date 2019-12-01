@@ -1,17 +1,39 @@
-<div class="container">
-  <h1>ユーザー編集画面</h1>
-  <%= render 'shared/error_messages' %>
-  
+<div class="container" style="margin-bottom:60px">
   <%= form_with model: @user, method: :patch do |f| %>
+    <h1>ユーザー編集画面
+      <span style="float:right"><%= f.submit '保存', class: 'btn btn-primary' %></span>
+    </h1>
+    
+    <%= render 'shared/error_messages' %>
     <div class="form-group">
       <%= f.label :name, 'ユーザー名' %>
       <%= f.text_field :name, class:"form-control", value: @user.name %>
     </div>
     <div class="form-group">
+      <%= f.label :sex, '性別　' %>
+      <label><%= f.radio_button :sex, :男性 %>男性</label>
+      <label><%= f.radio_button :sex, :女性 %>女性</label>
+    </div>
+    <div class="form-group">
+      <%= f.label :birthday, '生年月日' %>
+      <%== sprintf(f.date_select(
+        :birthday,
+        use_month_numbers: true,
+        date_separator: '%s',
+        start_year: 1930,
+        end_year: Time.now.year,
+        default: '1990-1-1'.to_date,
+        class:"form-control"), '年', '月') + '日' %>
+    </div>
+    <div class="form-group">
       <%= f.label :introduction, '自己紹介' %>
       <%= f.text_field :introduction, class: "form-control", value: @user.introduction %>
     </div>
-  
-    <%= f.submit '保存', class: 'btn btn-primary' %>
+    <div class="form-group">
+      <%= f.label '愛用サプリ' %>
+      <%= f.text_field :favorite1, class:"form-control", value: @user.favorite1 %>
+      <%= f.text_field :favorite2, class:"form-control", value: @user.favorite2 %>
+      <%= f.text_field :favorite3, class:"form-control", value: @user.favorite3 %>
+    </div>
   <% end %>
 </div>

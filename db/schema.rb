@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_23_135417) do
+ActiveRecord::Schema.define(version: 2019_11_30_060109) do
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "post_id", null: false
@@ -54,6 +54,11 @@ ActiveRecord::Schema.define(version: 2019_10_23_135417) do
     t.string "password_digest", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "sex"
+    t.integer "sweet_tooth"
+    t.string "favorite1"
+    t.string "favorite2"
+    t.string "favorite3"
   end
 
   add_foreign_key "post_tag_relations", "posts"

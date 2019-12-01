@@ -10,4 +10,8 @@ class User < ApplicationRecord
       length: { maximum: 255 }
     validates :password,
       length: { minimum: 8 }, allow_nil: true
+
+    enum sex: {
+      男性:1,女性:2
+    }
 end
