@@ -7,7 +7,17 @@
   </div>
   <div class="card-body">
     <p class="card-text"><%= simple_format(post.body) %></p>
-
     <div class="post-show-date"><%= post.created_at.to_s(:datetime_jp) %></div>
+  </div>
+  <div>
+    <% if post.likes.find_by(user_id: @current_user.id).nil? %>
+      <%= button_to likes_path(post_id: post.id) do %>
+        <i class="far fa-star"></i> <%= post.likes.count %>
+      <% end %>
+    <% else %>
+      <%= button_to like_path(post_id: post.id), method: :delete do %>
+        <i class="fas fa-star" style="color:yellow"></i> <%= post.likes.count %>
+      <% end %>
+    <% end %>
   </div>
 </div>

@@ -21,6 +21,7 @@
 
 class User < ApplicationRecord
     has_many :posts, dependent: :delete_all
+    has_many :likes, dependent: :delete_all
 
     has_secure_password
     validates :name,
@@ -35,4 +36,8 @@ class User < ApplicationRecord
     enum sex: {
       男性:1,女性:2
     }
+
+    def already_liked?(post)
+      self.likes.exists?(post_id: post.id)
+    end
 end
