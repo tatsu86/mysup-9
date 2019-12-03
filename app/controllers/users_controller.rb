@@ -5,13 +5,10 @@ class UsersController < ApplicationController
   
   def create
     user = User.new(user_params)
-    user.unique_id = "@" + user.unique_id
     if user.save
       session[:user_id] = user.id
       redirect_to posts_path
     else
-      user.unique_id.slice!(0,1)
-      
       redirect_back fallback_location: new_user_path, flash: {
         user: user,
         error_messages: user.errors.full_messages

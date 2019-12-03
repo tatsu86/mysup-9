@@ -38,7 +38,8 @@ class User < ApplicationRecord
     validates :unique_id,
       presence: true,
       uniqueness: true,
-      format: { with: /@[a-zA-Z0-9_\-.]{3,15}/ }
+      length: { maximum: 20 },
+      format: { with: /\A[a-zA-Z0-9]+\z/ }
 
     enum sex: {
       男性:1,女性:2

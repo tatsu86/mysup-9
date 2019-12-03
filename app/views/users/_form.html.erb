@@ -10,15 +10,15 @@
   <%= form_with model: user do |f| %>
     <div class="form-group">
       <%= f.label :name, 'ユーザー名' %>
-      <%= f.text_field :name, class:"form-control" %>
+      <%= f.text_field :name, placeholder: "まいさぷ", class:"form-control" %>
     </div>
     <div class="form-group">
       <%= f.label :unique_id, 'ID' %>
-      <%= f.text_field :unique_id, class:"form-control" %>
+      <%= f.text_field :unique_id, placeholder: "mysup_id", class:"form-control" %>
     </div>
     <div class="form-group">
       <%= f.label :email, 'メールアドレス' %>
-      <%= f.text_field :email, class:"form-control" %>
+      <%= f.text_field :email, placeholder: "mysup@example.com", class:"form-control" %>
     </div>
     <div class="form-group">
       <%= f.label :password, 'パスワード　※8文字以上' %>
