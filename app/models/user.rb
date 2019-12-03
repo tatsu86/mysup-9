@@ -25,13 +25,20 @@ class User < ApplicationRecord
 
     has_secure_password
     validates :name,
-      presence: true
+      presence: true,
+      length: { maximum: 20 },
+      format: { with: /[a-zA-Z0-9_\-.]{3,15}/ }
     validates :email,
       presence: true,
       uniqueness: true,
-      length: { maximum: 255 }
+      length: { maximum: 255 },
+      format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
     validates :password,
       length: { minimum: 8 }, allow_nil: true
+    validates :unique_id,
+      presence: true,
+      uniqueness: true,
+      format: { with: /@[a-zA-Z0-9_\-.]{3,15}/ }
 
     enum sex: {
       男性:1,女性:2

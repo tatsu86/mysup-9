@@ -1,4 +1,11 @@
 <div class="bgclear">
+<% if flash[:error_messages] %>
+  <div class="alert alert-danger">
+    <% flash[:error_messages].each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </div>
+<% end %>
   <div style="padding:15px">
   <%= form_with model: user do |f| %>
     <div class="form-group">

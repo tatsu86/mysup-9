@@ -1,5 +1,5 @@
 <div class="container" style="margin-bottom:60px">
-  <h1>マイページ
+  <h1>プロフィール
     <span style="float:right"><%= link_to 'プロフィール編集', edit_user_path(@user.id), class: 'btn btn-primary' %></span>
   </h1>
 
@@ -10,7 +10,7 @@
     <div style="clear:both; padding-top: 5px">
       <p style="font-size: 20px"><%= @user.name %></p>
       <p><%= @user.unique_id %></p>
-      <p><%= @user.sex %></p>
+      <p><%= @user.sex %>　<%= calcAge(@user.birthday.to_s) %>歳</p>
       <div class="form-group">
         <%= f.label :introduction, '自己紹介' %>
         <%= f.text_field :introduction, class: "form-control", readonly: true, value: @user.introduction %>
