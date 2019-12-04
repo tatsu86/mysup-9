@@ -14,17 +14,17 @@
             <td>
               <%= link_to post, style:'text-decoration:none;' do %>
                 <div style="border-collapse:collapse;">
-                  <div style="height:24px">
+                  <div style="height:50px">
                     <div style="position:relative;">
                       <span style="color:black"><%= @current_user.name %></span> 
                       <span style="color:grey"><%= @current_user.unique_id %></span>
-                      <% post.tags.each do |tag| %>
-                        <span class="badge badge-primary"><%= tag.name %></span>
-                      <% end %>
                       <span class="post-index-date", style="position:absolute;right:0;">
                         <%= post.created_at.to_s(:datetime_jp) %>
                       </span>
                     </div>
+                    <% post.tags.each do |tag| %>
+                      <span class="badge badge-primary"><%= tag.name %></span>
+                    <% end %>
                   </div>
                   <div style="width:100%">
                     <span style="color:black;"><%= post.body %></span>
@@ -36,7 +36,6 @@
                     <% else %>
                         <i class="fas fa-star" style="color:yellow"></i> <%= post.likes.count %>
                     <% end %>
-                    <%= link_to '削除', post, style:"margin-left:5px; color:red", method: :delete, data: { confirm: '削除してもよろしいですか？' } %>
                   </div>
                 </div>
               <% end %>

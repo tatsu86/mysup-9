@@ -1,13 +1,20 @@
 <div class="card">
   <div class="card-header">
-    <p><%= post.user.name %></p>
+    <div>
+      <%= post.user.name %> <span style="color:grey"><%= post.user.unique_id %></span>
+      <span style="float:right">
+        <%= link_to '削除', post, style:"margin-left:5px; color:red", method: :delete, data: { confirm: '削除してもよろしいですか？' } %>
+      </span>
+    </div>
     <% post.tags.each do |tag| %>
       <span class="badge badge-primary"><%= tag.name %></span>
     <% end %>
   </div>
   <div class="card-body">
     <p class="card-text"><%= simple_format(post.body) %></p>
-    <div class="post-show-date"><%= post.created_at.to_s(:datetime_jp) %></div>
+  </div>
+  <div class="post-show-date" style="padding:0 0 10px 10px">
+    <%= post.created_at.to_s(:datetime_jp) %>
   </div>
   <div>
     <% if post.likes.find_by(user_id: @current_user.id).nil? %>
