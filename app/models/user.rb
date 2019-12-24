@@ -22,12 +22,14 @@
 class User < ApplicationRecord
     has_many :posts, dependent: :delete_all
     has_many :likes, dependent: :delete_all
+    # has_one_attached :image
+    mount_uploader :image, ImageUploader
 
     has_secure_password
     validates :name,
       presence: true,
-      length: { maximum: 20 },
-      format: { with: /[a-zA-Z0-9_\-.]{3,15}/ }
+      length: { maximum: 20 }
+      # format: { with: /[a-zA-Z0-9_\-.]{3,15}/ }
     validates :email,
       presence: true,
       uniqueness: true,
@@ -38,8 +40,8 @@ class User < ApplicationRecord
     validates :unique_id,
       presence: true,
       uniqueness: true,
-      length: { maximum: 20 },
-      format: { with: /\A[a-zA-Z0-9]+\z/ }
+      length: { maximum: 20 }
+      # format: { with: /\A[a-zA-Z0-9]+\z/ }
 
     enum sex: {
       男性:1,女性:2

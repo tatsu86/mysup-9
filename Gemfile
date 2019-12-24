@@ -17,8 +17,10 @@ gem 'ransack'
 gem 'bcrypt', '~> 3.1.7'
 gem 'kaminari'
 gem 'font-awesome-sass', '~> 5.4.1'
-# gem 'carrierwave'
+gem 'carrierwave'
 # gem 'aws-sdk-s3', require: false
+gem 'fog-aws'
+gem 'rmagick'
 
 
 group :development, :test do

@@ -5,7 +5,11 @@
 
   <%= form_with url: mypage_path, method: :get do |f| %>
     <div class="icon-user" style="border-radius:50%; overflow:hidden; border:1px solid black; display:inline-block; float:left;">
-      <%= image_tag 'unknown.png', class:'', style:'height:100px;' %>
+      <% if @user.image? %>
+        <%= image_tag @user.image.to_s, class:'', style:'height:100px;' %>
+      <% else %>
+        <%= image_tag 'unknown.png', class:'', style:'height:100px;' %>
+      <% end %>
     </div>
     <div style="clear:both; padding-top: 5px">
       <p style="font-size: 20px"><%= @user.name %></p>

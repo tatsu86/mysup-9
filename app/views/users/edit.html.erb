@@ -5,6 +5,13 @@
     </h1>
     
     <%= render 'shared/error_messages' %>
+    <% if @user.persisted? && @user.image? %>
+      <%= image_tag @user.image.to_s %>
+      <label><%= f.check_box :remove_image %> 画像を削除</label>
+    <% else %>
+      <%= f.hidden_field :image_cache %>
+    <% end %>
+    <%= f.file_field :image %>
     <div class="form-group">
       <%= f.label :name, 'ユーザー名' %>
       <%= f.text_field :name, class:"form-control", value: @user.name %>

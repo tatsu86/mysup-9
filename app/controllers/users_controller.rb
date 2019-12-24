@@ -25,7 +25,6 @@ class UsersController < ApplicationController
   end
   
   def update
-    
     @user = User.find(@current_user.id)
     if @user.update_attributes(update_account_params)
       redirect_to mypage_path
@@ -38,12 +37,17 @@ class UsersController < ApplicationController
   end
   
   private
-  
+  # 新規登録
   def user_params
-    params.require(:user).permit(:name, :unique_id, :email, :password, :password_confirmation)
+    params.require(:user).permit(
+      :name, :unique_id, :email, :password, :password_confirmation
+    )
   end
   
+  #編集
   def update_account_params
-    params.require(:user).permit(:name, :introduction, :birthday, :sex, :favorite1, :favorite2, :favorite3)
+    params.require(:user).permit(
+      :name, :introduction, :birthday, :sex, :favorite1, :favorite2, :favorite3, :image, :image_cache, :remove_image
+    )
   end
 end
