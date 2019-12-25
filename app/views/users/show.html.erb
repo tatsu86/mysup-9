@@ -1,19 +1,19 @@
 <div class="container" style="margin-bottom:60px">
   <h1>プロフィール
-    <span style="float:right"><%= link_to 'プロフィール編集', edit_user_path(@user.id), class: 'btn btn-primary' %></span>
+    <span style="float:right"><%= link_to '変更', edit_user_path(@user.id), class: 'btn btn-primary' %></span>
   </h1>
 
   <%= form_with url: mypage_path, method: :get do |f| %>
-    <div class="icon-user" style="border-radius:50%; overflow:hidden; border:1px solid black; display:inline-block; float:left;">
+    <div class="icon-field">
       <% if @user.image? %>
-        <%= image_tag @user.image.to_s, class:'', style:'height:100px;' %>
+        <%= image_tag @user.image.to_s, class:'icon-user-inner' %>
       <% else %>
-        <%= image_tag 'unknown.png', class:'', style:'height:100px;' %>
+        <%= image_tag 'unknown.png', class:'icon-user-inner' %>
       <% end %>
     </div>
-    <div style="clear:both; padding-top: 5px">
-      <p style="font-size: 20px"><%= @user.name %></p>
-      <p><%= @user.unique_id %></p>
+    <div>
+      <p id="account-name"><%= @user.name %></p>
+      <p class='uniqueid'><%= @user.unique_id %></p>
       <p><%= @user.sex %>　<%= calcAge(@user.birthday.to_s) %>歳</p>
       <div class="form-group">
         <%= f.label :introduction, '自己紹介' %>

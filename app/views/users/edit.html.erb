@@ -5,13 +5,16 @@
     </h1>
     
     <%= render 'shared/error_messages' %>
-    <% if @user.persisted? && @user.image? %>
-      <%= image_tag @user.image.to_s %>
-      <label><%= f.check_box :remove_image %> 画像を削除</label>
-    <% else %>
-      <%= f.hidden_field :image_cache %>
-    <% end %>
-    <%= f.file_field :image %>
+    <div class='icon-field' style="opacity:0.75" onClick="$('#file').click()">
+      <% if @user.persisted? && @user.image? %>
+          <%= image_tag @user.image.to_s, class:'icon-user-inner' %>  
+      <% else %>
+        <%= image_tag 'unknown.png', class:'icon-user-inner' %>
+        <%= f.hidden_field :image_cache %>
+      <% end %>
+      <span class='icon-photo fas fa-image', style="color:white;"></span>
+    </div>
+    <%= f.file_field :image, class: "icon-user-inner", style: "display:none;", id: "file" %>
     <div class="form-group">
       <%= f.label :name, 'ユーザー名' %>
       <%= f.text_field :name, class:"form-control", value: @user.name %>
