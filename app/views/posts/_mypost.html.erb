@@ -1,0 +1,41 @@
+<% if @posts.length >= 1 %>
+    <table class="table table-striped">
+        <tbody>
+        <% @posts.each do |post| %>
+            <tr>
+                <td>
+                <%= link_to post, style:'text-decoration:none;' do %>
+                <div style="border-collapse:collapse;">
+                    <div style="height:50px">
+                    <div style="position:relative;">
+                        <span style="color:black"><%= @current_user.name %></span> 
+                        <span style="color:grey"><%= @current_user.unique_id %></span>
+                        <span class="post-index-date", style="position:absolute;right:0;">
+                        <%= post.created_at.to_s(:datetime_jp) %>
+                        </span>
+                    </div>
+                    <% post.tags.each do |tag| %>
+                        <span class="badge badge-primary"><%= tag.name %></span>
+                    <% end %>
+                    </div>
+                    <div style="width:100%">
+                    <span style="color:black;"><%= post.body %></span>
+                    </div>
+                    <div class="post-index-comment" style="margin-top:10px;">
+                    <i class="far fa-comment"></i> <%= post.comments.count %>　
+                    <% if post.likes.find_by(user_id: @current_user.id).nil? %>
+                        <i class="far fa-star"></i> <%= post.likes.count %>
+                    <% else %>
+                        <i class="fas fa-star" style="color:yellow"></i> <%= post.likes.count %>
+                    <% end %>
+                    </div>
+                    </div>
+                <% end %>
+                </td>
+            </tr>
+        <% end %>
+        </tbody>
+    </table>
+<% else %>
+    <p>ツイートがありません。</p>
+<% end %>

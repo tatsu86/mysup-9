@@ -18,6 +18,7 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(@current_user.id)
+    @myposts = Post.where(user_id: @current_user.id)
   end
   
   def edit

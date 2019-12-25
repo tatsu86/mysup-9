@@ -26,6 +26,8 @@
         <%= f.text_field :favorite3, class:"form-control", readonly: true, value: @user.favorite3 %>
       </div>
     </div>
-
   <% end %>
+
+  <%= render partial: 'posts/mypost' %>
+
 </div>
