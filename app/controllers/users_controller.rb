@@ -19,6 +19,11 @@ class UsersController < ApplicationController
   def show
     @user = User.find(@current_user.id)
     @myposts = Post.where(user_id: @current_user.id)
+    # TODO:生のSQLは叩かないように
+    query = "select * from posts"
+    query += " where posts.id in (select post_id from likes "
+    query += " where likes.user_id=" + @current_user.id.to_s + ")"
+    @like_posts = Post.find_by_sql(query)
   end
   
   def edit

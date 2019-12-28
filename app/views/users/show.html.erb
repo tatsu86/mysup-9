@@ -1,5 +1,5 @@
 <div class="container" style="margin-bottom:60px">
-  <h1>プロフィール
+  <h1 style="font-size:30px">プロフィール
     <span style="float:right"><%= link_to '変更', edit_user_path(@user.id), class: 'btn btn-primary' %></span>
   </h1>
 
@@ -27,7 +27,24 @@
       </div>
     </div>
   <% end %>
-
-  <%= render partial: 'posts/mypost' %>
+  <%# CSSによるタブ切り替え %>
+  <div class="tabs">
+    <input id="all" type="radio" name="tab_item" checked>
+    <label class="tab_item" for="all">投稿</label>  
+    <input id="programming" type="radio" name="tab_item">
+    <label class="tab_item" for="programming">いいね</label>
+    <div class="tab_content" id="all_content">
+      <div class="tab_content_description">
+        <%# <p class="c-txtsp">総合の内容がここに入ります</p> %>
+        <%= render partial: 'posts/mypost' %>
+      </div>
+    </div>
+    <div class="tab_content" id="programming_content">
+      <div class="tab_content_description">
+        <%# <p class="c-txtsp">プログラミングの内容がここに入ります</p> %>
+        <%= render partial: 'posts/like_posts'%>
+      </div>
+    </div>
+  </div>
 
 </div>
