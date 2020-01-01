@@ -14,7 +14,7 @@
     <p class="card-text"><%= simple_format(post.body) %></p>
   </div>
   <div class="post-show-date" style="padding:0 0 10px 10px">
-    <%= post.created_at.to_s(:datetime_jp) %>
+    <%= GetDateFormat(post.created_at) %>
   </div>
   <div>
     <% if post.likes.find_by(user_id: @current_user.id).nil? %>

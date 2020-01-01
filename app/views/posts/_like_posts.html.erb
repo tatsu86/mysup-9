@@ -11,7 +11,7 @@
                         <span style="color:black"><%= @current_user.name %></span> 
                         <span style="color:grey"><%= @current_user.unique_id %></span>
                         <span class="post-index-date", style="position:absolute;right:0;">
-                        <%= post.created_at.to_s(:datetime_jp) %>
+                        <%= GetDateFormat(post.created_at) %>
                         </span>
                     </div>
                     <% post.tags.each do |tag| %>
