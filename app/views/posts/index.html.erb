@@ -16,8 +16,8 @@
                 <div style="border-collapse:collapse;">
                   <div style="height:50px">
                     <div style="position:relative;">
-                      <span style="color:black"><%= @current_user.name %></span> 
-                      <span style="color:grey"><%= @current_user.unique_id %></span>
+                      <span style="color:black"><%= post.user.name %></span> 
+                      <span style="color:grey"><%= post.user.unique_id %></span>
                       <span class="post-index-date", style="position:absolute;right:0;">
                         <%= GetDateFormat(post.created_at) %>
                       </span>
