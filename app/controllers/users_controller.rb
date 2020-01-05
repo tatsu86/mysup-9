@@ -19,11 +19,10 @@ class UsersController < ApplicationController
   def show
     @user = User.find(@current_user.id)
     @myposts = Post.where(user_id: @current_user.id)
-    # TODO:生のSQLは叩かないように
-    query = "select * from posts"
-    query += " where posts.id in (select post_id from likes "
-    query += " where likes.user_id=" + @current_user.id.to_s + ")"
-    @like_posts = Post.find_by_sql(query)
+    @myposts = @myposts.order(created_at: :desc).page(params[:page])
+    
+    @like_posts = Post.where(id: Post.joins(:likes).select("post_id").where(user_id: @current_user.id))
+    @like_posts = @like_posts.order(created_at: :desc).page(params[:page])
   end
   
   def edit

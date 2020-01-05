@@ -1,0 +1,38 @@
+  <% if posts.length >= 1 %>
+    <div>
+      <div class="">
+        <% posts.each do |post| %>
+          <div class="card">
+            <%= link_to post, style:'text-decoration:none;' do %>
+              <div style="border-collapse:collapse;">
+                <div style="height:50px">
+                  <div>
+                    <span style="color:black"><%= post.user.name %></span> 
+                    <span style="color:grey"><%= post.user.unique_id %></span>
+                  </div>
+                  <% post.tags.each do |tag| %>
+                    <span class="badge badge-primary"><%= tag.name %></span>
+                  <% end %>
+                </div>
+                <div style="width:100%">
+                  <span style="color:black;"><%= post.body %></span>
+                </div>
+                <div class="post-index-comment" style="margin-top:10px;">
+                  <% if post.likes.find_by(user_id: @current_user.id).nil? %>
+                      <i class="far fa-heart"></i> <%= post.likes.count %>
+                  <% else %>
+                      <i class="fas fa-heart" style="color:pink"></i> <%= post.likes.count %>
+                  <% end %> 
+                  　<i class="far fa-comment"></i> <%= post.comments.count %>
+                </div>
+                <p class="post-date"><%= GetDateFormat(post.created_at) %></p>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <%= paginate posts %>
+  <% else %>
+    <p>ツイートがありません。</p>
+  <% end %>

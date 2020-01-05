@@ -27,7 +27,7 @@
       </div>
     </div>
   <% end %>
-  <%# CSSによるタブ切り替え %>
+
   <div class="tabs">
     <input id="all" type="radio" name="tab_item" checked>
     <label class="tab_item" for="all">投稿</label>  
@@ -35,14 +35,12 @@
     <label class="tab_item" for="programming">いいね</label>
     <div class="tab_content" id="all_content">
       <div class="tab_content_description">
-        <%# <p class="c-txtsp">総合の内容がここに入ります</p> %>
-        <%= render partial: 'posts/mypost' %>
+        <%= render partial: 'posts/posts', locals: { posts: @myposts } %>
       </div>
     </div>
     <div class="tab_content" id="programming_content">
       <div class="tab_content_description">
-        <%# <p class="c-txtsp">プログラミングの内容がここに入ります</p> %>
-        <%= render partial: 'posts/like_posts'%>
+        <%= render partial: 'posts/posts', locals: { posts: @like_posts } %>
       </div>
     </div>
   </div>
