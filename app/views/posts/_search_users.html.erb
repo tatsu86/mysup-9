@@ -1,0 +1,21 @@
+<% if users.length >= 1 %>
+    <p style="margin-bottom:0;">アカウント</p>
+    <div class="user-list">
+        <% users.each do |user| %>
+            <div class="user-card">
+                <div class="icon-field" style="float:left;">
+                    <% if user.image? %>
+                        <%= image_tag user.image.to_s, class:'icon-user-inner' %>
+                    <% else %>
+                        <%= image_tag 'unknown.png', class:'icon-user-inner' %>
+                    <% end %>
+                </div>
+                <div class="user-detail">
+                    <p style="font-weight:bold;"><%= user.name %></p>
+                    <p style="color:grey; margin-top: -7px">@<%= user.unique_id %></p>
+                    <p><%= user.introduction %></p>
+                </div>
+            </div>
+        <% end %>
+    </div>
+<% end %>

@@ -1,7 +1,8 @@
 <div class="container--sm bottom-space">
     <div class="d-flex align-items-center" style="margin: 5px 15px">
+    <%# TODO:placeholderに虫眼鏡アイコンを表示する %>
         <%= form_tag(posts_search_path,:method => 'get') do %>
-            <%= text_field_tag :search, params[:search], class:"searchBox font-awesome fa", placeholder:"\uf002検索" %>
+            <%= text_field_tag :search, params[:search], class:"searchBox font-awesome fa", placeholder:"検索" %>
             <%= submit_tag '検索', :name => nil, style:"display:none;" %>
             <%= select_tag :tag_id,
               options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
@@ -25,39 +26,8 @@
   <% if @search_params == false %>
     <p>検索してください</p>
   <% else %>
-    <% if @search_posts.length >= 1 %>
-        <table class="table table-striped">
-        <tbody>
-            <% @search_posts.each do |post| %>
-            <tr>
-                <td>
-                <%= link_to post, style:'text-decoration:none;' do %>
-                    <div style="border-collapse:collapse;">
-                    <div style="height:24px">
-                        <div style="position:relative;color:grey;">
-                        <span>ユーザー</span>
-                        <% post.tags.each do |tag| %>
-                            <span class="badge badge-primary"><%= tag.name %></span>
-                        <% end %>
-                        <span class="post-index-date", style="position:absolute;right:0;">
-                            <%= GetDateFormat(post.created_at) %>
-                        </span>
-                        </div>
-                    </div>
-                    <div style="width:100%">
-                        <span style="color:black;"><%= post.body %></span>
-                    </div>
-                    </div>
-                <% end %>
-                </td>
-            </tr>
-            <% end %>
-        </tbody>
-        </table>
-        <%= paginate @search_posts %>
-    <% else %>
-        <p>ツイートがありません。</p>
-    <% end %>
+    <%= render partial: 'posts/search_users', locals: { users: @search_users } %>
+    <%= render partial: 'posts/posts', locals: { posts: @search_posts } %>
   <% end %>
   <%= link_to (content_tag(:i, '', class:"fas fa-plus-circle", style:"font-size:50px")), new_post_path, class:"btn-add-tweet" %>
 </div>

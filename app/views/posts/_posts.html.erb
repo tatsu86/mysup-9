@@ -1,14 +1,14 @@
   <% if posts.length >= 1 %>
     <div>
-      <div class="">
+      <div>
         <% posts.each do |post| %>
           <div class="card">
             <%= link_to post, style:'text-decoration:none;' do %>
               <div style="border-collapse:collapse;">
-                <div style="height:50px">
+                <div>
                   <div>
-                    <span style="color:black"><%= post.user.name %></span> 
-                    <span style="color:grey"><%= post.user.unique_id %></span>
+                    <span style="color:black; font-weight:bold;"><%= post.user.name %></span> 
+                    <span style="color:grey">@<%= post.user.unique_id %></span>
                   </div>
                   <% post.tags.each do |tag| %>
                     <span class="badge badge-primary"><%= tag.name %></span>
@@ -34,5 +34,5 @@
     </div>
     <%= paginate posts %>
   <% else %>
-    <p>ツイートがありません。</p>
+    <p>投稿がありません。</p>
   <% end %>

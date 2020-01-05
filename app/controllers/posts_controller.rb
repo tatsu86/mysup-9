@@ -14,6 +14,7 @@ class PostsController < ApplicationController
         @search_posts = params[:tag_id].present? ? Tag.find(params[:tag_id]).posts : Post.all
         @search_posts = @search_posts.search(params[:search])
         @search_posts = @search_posts.order(created_at: :desc).page(params[:page])
+        @search_users = User.all.search_user(params[:search])
     end
 
     def new

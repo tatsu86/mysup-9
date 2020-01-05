@@ -18,23 +18,38 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
- .font-awesome {
-   font-family: FontAwesome;
-   font-style: normal;
-   font-weight: normal;
-   text-decoration: inherit;
- }
+.font-awesome {
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: inherit;
+}
+
+input.font-awesome {
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: inherit;
+}
  
- body {
-   display: flex;
-   flex-direction: column;
-   min-height: 100vh;
- }
+.kaushan {
+  font-family: 'Kaushan Script', cursive;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
  
  footer {
    margin-top: auto;
  }
  
+.fa-capsules:before {
+  content: '\f46b';
+}
+
  .back-image-capsules {
    box-sizing: border-box;
    background-image: image-url('capsules');
@@ -109,6 +124,9 @@
      margin-bottom: 90px;
    }
 
+   .card {
+     padding: 0 5px;
+   }
 
  }
  
@@ -119,8 +137,9 @@
    }
 
    .card {
-    border: １ solid #f5f5f5;
+    padding: 0 5px;
     margin: 5px 0;
+    border: １px solid #f5f5f5;
   }
  }
  
@@ -140,7 +159,8 @@
    }
 
    .card {
-    border: １ solid #f5f5f5;
+    padding: 0 5px;
     margin: 5px 0;
+    border: １px solid #f5f5f5;
   }
  }
