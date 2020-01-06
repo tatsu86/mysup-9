@@ -1,32 +1,44 @@
-<div class="container" style="margin-bottom:60px">
-  <h1 style="font-size:30px">プロフィール
-    <span style="float:right"><%= link_to '変更', edit_user_path(@user.id), class: 'btn btn-primary' %></span>
-  </h1>
+<div class="container" style="margin-bottom:60px"> 
+  <div style="margin-top:10px;">
 
-  <%= form_with url: mypage_path, method: :get do |f| %>
-    <div class="icon-field">
-      <% if @user.image? %>
-        <%= image_tag @user.image.to_s, class:'icon-user-inner' %>
-      <% else %>
-        <%= image_tag 'unknown.png', class:'icon-user-inner' %>
-      <% end %>
-    </div>
-    <div>
-      <p id="account-name"><%= @user.name %></p>
-      <p class='uniqueid'><%= @user.unique_id %></p>
-      <p><%= @user.sex %>　<%= calcAge(@user.birthday.to_s) %>歳</p>
-      <div class="form-group">
-        <%= f.label :introduction, '自己紹介' %>
-        <%= f.text_field :introduction, class: "form-control", readonly: true, value: @user.introduction %>
+    <%= form_with url: mypage_path, method: :get do |f| %>
+      <div class="profile-outline">
+        <div class="icon-profile-field", style="float:left;">
+          <% if @user.image? %>
+            <%= image_tag @user.image.to_s, class:'icon-profile-inner' %>
+          <% else %>
+            <%= image_tag 'unknown.png', class:'icon-profile-inner' %>
+          <% end %>
+        </div>
+        <div style="float:left; margin-left:10px;">
+          <p id="account-name"><%= @user.name %></p>
+          <p class='uniqueid'>@<%= @user.unique_id %></p>
+          <p>
+            <%= @user.sex %>　
+            <% if @user.birthday.nil? == false %>
+              <%= calcAge(@user.birthday.to_s) %>歳
+            <% end %>
+          </p>
+        </div>
       </div>
-      <div class="form-group">
-        <%= f.label :favorite1, '愛用サプリ' %>
-        <%= f.text_field :favorite1, class:"form-control", readonly: true, value: @user.favorite1 %>
-        <%= f.text_field :favorite2, class:"form-control", readonly: true, value: @user.favorite2 %>
-        <%= f.text_field :favorite3, class:"form-control", readonly: true, value: @user.favorite3 %>
+      <span style="clear: both;"></span>
+      <div style="clear: both; margin-top: 10px;">
+        <% if @current_user.id == @user.id %>
+          <%= link_to 'プロフィールを編集', edit_user_path(@user.id), class: 'profile-edit' %>
+        <% end %>
+        <div class="form-group">
+          <%= f.label :introduction, '自己紹介' %>
+          <%= f.text_field :introduction, class: "form-control", readonly: true, value: @user.introduction %>
+        </div>
+        <div class="form-group">
+          <%= f.label :favorite1, '愛用サプリ' %>
+          <%= f.text_field :favorite1, class:"form-control", style:"margin-bottom:3px;", readonly: true, value: @user.favorite1 %>
+          <%= f.text_field :favorite2, class:"form-control", style:"margin-bottom:3px;", readonly: true, value: @user.favorite2 %>
+          <%= f.text_field :favorite3, class:"form-control", readonly: true, value: @user.favorite3 %>
+        </div>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 
   <div class="tabs">
     <input id="all" type="radio" name="tab_item" checked>

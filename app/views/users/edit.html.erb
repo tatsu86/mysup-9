@@ -5,16 +5,16 @@
     </h1>
     
     <%= render 'shared/error_messages' %>
-    <div class='icon-field' style="opacity:0.75" onClick="$('#file').click()">
+    <div class='icon-profile-field' style="opacity:0.75" onClick="$('#file').click()">
       <% if @user.persisted? && @user.image? %>
-          <%= image_tag @user.image.to_s, class:'icon-user-inner' %>  
+          <%= image_tag @user.image.to_s, class:'icon-profile-inner' %>  
       <% else %>
-        <%= image_tag 'unknown.png', class:'icon-user-inner' %>
+        <%= image_tag 'unknown.png', class:'icon-profile-inner' %>
         <%= f.hidden_field :image_cache %>
       <% end %>
       <span class='icon-photo fas fa-image', style="color:white;"></span>
     </div>
-    <%= f.file_field :image, class: "icon-user-inner", style: "display:none;", id: "file" %>
+    <%= f.file_field :image, class: "icon-profile-inner", style: "display:none;", id: "file" %>
     <div class="form-group">
       <%= f.label :name, 'ユーザー名' %>
       <%= f.text_field :name, class:"form-control", value: @user.name %>
