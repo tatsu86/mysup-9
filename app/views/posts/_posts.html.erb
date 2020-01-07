@@ -3,17 +3,24 @@
       <div class="card">
         <%= link_to post, style:'text-decoration:none;' do %>
           <div style="border-collapse:collapse;">
-            <div>
-              <div>
-                <span style="color:black; font-weight:bold;"><%= post.user.name %></span> 
-                <span style="color:grey">@<%= post.user.unique_id %></span>
+            <div style="margin-top:5px;">
+              <div class="icon-post-field" style="float:left;">
+                  <% if post.user.image? %>
+                      <%= image_tag post.user.image.to_s, class:'icon-user-inner' %>
+                  <% else %>
+                      <%= image_tag 'unknown.png', class:'icon-user-inner' %>
+                  <% end %>
               </div>
-              <% post.tags.each do |tag| %>
-                <span class="badge badge-primary"><%= tag.name %></span>
-              <% end %>
+              <div style="float:left;">
+                <p style="color:black; font-weight:bold; margin-bottom:0;"><%= post.user.name %></p> 
+                <p style="color:grey">@<%= post.user.unique_id %></p>
+              </div>
             </div>
-            <div style="width:100%">
-              <span style="color:black;"><%= post.body %></span>
+            <div style="width:100%; clear:both;">
+              <% post.tags.each do |tag| %>
+                <p class="badge badge-primary"><%= tag.name %></p>
+              <% end %>
+              <p style="color:black;"><%= post.body %></p>
             </div>
             <div class="post-index-comment" style="margin-top:10px;">
               <% if post.likes.find_by(user_id: @current_user.id).nil? %>
