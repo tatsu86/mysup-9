@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get 'home/index'
   root 'home#index'
   get 'mypage', to: 'users#show'
+  get ':unique_id', to: 'users#other'
   get 'posts/search', to: 'posts#search'
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'

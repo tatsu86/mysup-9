@@ -1,16 +1,32 @@
-<div class="card">
+<div class="card", style="margin-top:10px;">
   <div class="card-header">
-    <div>
-      <%= post.user.name %> <span style="color:grey"><%= post.user.unique_id %></span>
-      <span style="float:right">
-        <%= link_to '削除', post, style:"margin-left:5px; color:red", method: :delete, data: { confirm: '削除してもよろしいですか？' } %>
-      </span>
-    </div>
-    <% post.tags.each do |tag| %>
-      <span class="badge badge-primary"><%= tag.name %></span>
+    <%= link_to "../#{post.user.unique_id.to_s}" do %>
+      <div>
+        <div style="margin-top:5px;">
+          <div class="icon-post-field" style="float:left;">
+              <% if post.user.image? %>
+                  <%= image_tag post.user.image.to_s, class:'icon-user-inner' %>
+              <% else %>
+                  <%= image_tag 'unknown.png', class:'icon-user-inner' %>
+              <% end %>
+          </div>
+          <div style="float:left;">
+            <p style="color:black; font-weight:bold; margin-bottom:0;"><%= post.user.name %></p> 
+            <p style="color:grey">@<%= post.user.unique_id %></p>
+          </div>
+        </div>
+        <span style="float:left;">
+          <%= link_to '削除', post, style:"margin-left:5px; color:red", method: :delete, data: { confirm: '削除してもよろしいですか？' } %>
+        </span>
+      </div>
     <% end %>
   </div>
-  <div class="card-body">
+  <div class="card-body", style="clear:both;">
+    <div style="margin-top:-15px;">
+      <% post.tags.each do |tag| %>
+        <span class="badge badge-primary"><%= tag.name %></span>
+      <% end %>
+    </div>
     <p class="card-text"><%= simple_format(post.body) %></p>
   </div>
   <div class="post-show-date" style="padding:0 0 10px 10px">
@@ -19,11 +35,11 @@
   <div>
     <% if post.likes.find_by(user_id: @current_user.id).nil? %>
       <%= button_to likes_path(post_id: post.id) do %>
-        <i class="far fa-star"></i> <%= post.likes.count %>
+        <i class="far fa-heart"></i> <%= post.likes.count %>
       <% end %>
     <% else %>
       <%= button_to like_path(post_id: post.id), method: :delete do %>
-        <i class="fas fa-star" style="color:yellow"></i> <%= post.likes.count %>
+        <i class="fas fa-heart" style="color:pink"></i> <%= post.likes.count %>
       <% end %>
     <% end %>
   </div>

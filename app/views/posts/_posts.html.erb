@@ -1,37 +1,35 @@
   <% if posts.length >= 1 %>
     <% posts.each do |post| %>
       <div class="card">
-        <%= link_to post, style:'text-decoration:none;' do %>
-          <div style="border-collapse:collapse;">
-            <div style="margin-top:5px;">
-              <div class="icon-post-field" style="float:left;">
-                  <% if post.user.image? %>
-                      <%= image_tag post.user.image.to_s, class:'icon-user-inner' %>
-                  <% else %>
-                      <%= image_tag 'unknown.png', class:'icon-user-inner' %>
-                  <% end %>
-              </div>
-              <div style="float:left;">
-                <p style="color:black; font-weight:bold; margin-bottom:0;"><%= post.user.name %></p> 
-                <p style="color:grey">@<%= post.user.unique_id %></p>
-              </div>
-            </div>
-            <div style="width:100%; clear:both;">
-              <% post.tags.each do |tag| %>
-                <p class="badge badge-primary"><%= tag.name %></p>
-              <% end %>
-              <p style="color:black;"><%= post.body %></p>
-            </div>
-            <div class="post-index-comment" style="margin-top:10px;">
-              <% if post.likes.find_by(user_id: @current_user.id).nil? %>
-                  <i class="far fa-heart"></i> <%= post.likes.count %>
+        <div style="margin-top:5px;">
+          <div class="icon-post-field" style="float:left;">
+              <% if post.user.image? %>
+                  <%= image_tag post.user.image.to_s, class:'icon-user-inner' %>
               <% else %>
-                  <i class="fas fa-heart" style="color:pink"></i> <%= post.likes.count %>
-              <% end %> 
-              　<i class="far fa-comment"></i> <%= post.comments.count %>
-            </div>
-            <p class="post-date"><%= GetDateFormat(post.created_at) %></p>
+                  <%= image_tag 'unknown.png', class:'icon-user-inner' %>
+              <% end %>
           </div>
+          <div style="float:left;">
+            <p style="color:black; font-weight:bold; margin-bottom:0;"><%= post.user.name %></p> 
+            <p style="color:grey">@<%= post.user.unique_id %></p>
+          </div>
+        </div>
+        <%= link_to post, style:'text-decoration:none;' do %>
+          <div style="width:100%; clear:both; margin-top:-10px;">
+            <% post.tags.each do |tag| %>
+              <p class="badge badge-primary"><%= tag.name %></p>
+            <% end %>
+            <p style="color:black;"><%= post.body %></p>
+          </div>
+          <div class="post-index-comment" style="margin-top:10px;">
+            <% if post.likes.find_by(user_id: @current_user.id).nil? %>
+                <i class="far fa-heart"></i> <%= post.likes.count %>
+            <% else %>
+                <i class="fas fa-heart" style="color:pink"></i> <%= post.likes.count %>
+            <% end %> 
+            　<i class="far fa-comment"></i> <%= post.comments.count %>
+          </div>
+          <p class="post-date"><%= GetDateFormat(post.created_at) %></p>
         <% end %>
       </div>
     <% end %>
