@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     user = User.new(user_params)
     if user.save
       session[:user_id] = user.id
-      redirect_to posts_path
+      redirect_to home_path
     else
       redirect_back fallback_location: new_user_path, flash: {
         user: user,
@@ -41,9 +41,9 @@ class UsersController < ApplicationController
   def update
     @user = User.find(@current_user.id)
     if @user.update_attributes(update_account_params)
-      redirect_to mypage_path
+      redirect_to "/#{@current_user.unique_id.to_s}"
     else
-      redirect_back fallback_location: edit_user_path, flash:{
+      redirect_back fallback_location: settings_profile_path, flash:{
         user: @user,
         error_messages: @user.errors.full_messages
       }

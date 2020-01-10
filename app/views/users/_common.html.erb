@@ -1,7 +1,7 @@
 <div class="container" style="margin-bottom:60px"> 
   <div style="margin-top:10px;">
 
-    <%= form_with url: mypage_path, method: :get do |f| %>
+    <%= form_with url: "/#{@current_user.unique_id.to_s}", method: :get do |f| %>
       <div class="profile-outline">
         <div class="icon-profile-field", style="float:left;">
           <% if @user.image? %>
@@ -24,7 +24,7 @@
       <span style="clear: both;"></span>
       <div style="clear: both; margin-top: 10px;">
         <% if @current_user.id == @user.id %>
-          <%= link_to 'プロフィールを編集', edit_user_path(@user.id), class: 'profile-edit' %>
+          <%= link_to 'プロフィールを編集', settings_profile_path, class: 'profile-edit' %>
         <% end %>
         <div class="form-group">
           <%= f.label :introduction, '自己紹介' %>

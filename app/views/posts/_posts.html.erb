@@ -14,7 +14,7 @@
             <p style="color:grey">@<%= post.user.unique_id %></p>
           </div>
         </div>
-        <%= link_to post, style:'text-decoration:none;' do %>
+        <%= link_to "/#{post.user.unique_id.to_s}/status/#{post.id}", style:'text-decoration:none;' do %>
           <div style="width:100%; clear:both; margin-top:-10px;">
             <% post.tags.each do |tag| %>
               <p class="badge badge-primary"><%= tag.name %></p>

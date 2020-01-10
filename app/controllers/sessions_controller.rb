@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
       user = User.find_by(email: params[:session][:email])
       if user && user.authenticate(params[:session][:password])
         session[:user_id] = user.id
-        redirect_to posts_path
+        redirect_to home_path
       else
         redirect_back fallback_location: root_path, flash: {
           danger: 'メールアドレスまたはパスワードが間違えています。'

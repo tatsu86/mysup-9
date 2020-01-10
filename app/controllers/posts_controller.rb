@@ -26,7 +26,7 @@ class PostsController < ApplicationController
         
         if post.save 
             flash[:success] = "投稿しました。"
-            redirect_to posts_path
+            redirect_to home_path
         else
             redirect_to new_post_path, flash: {
                 post: post,
@@ -41,7 +41,7 @@ class PostsController < ApplicationController
 
     def destroy
         @post.destroy
-        redirect_to posts_path, flash: { notice: "削除しました。" }
+        redirect_to home_path, flash: { notice: "削除しました。" }
     end
 
     private

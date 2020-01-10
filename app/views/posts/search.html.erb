@@ -1,7 +1,7 @@
 <div class="container--sm bottom-space">
     <div class="d-flex align-items-center" style="margin: 5px 15px">
     <%# TODO:placeholderに虫眼鏡アイコンを表示する %>
-        <%= form_tag(posts_search_path,:method => 'get') do %>
+        <%= form_tag(explore_path,:method => 'get') do %>
             <%= text_field_tag :search, params[:search], class:"searchBox font-awesome fa", placeholder:"検索" %>
             <%= submit_tag '検索', :name => nil, style:"display:none;" %>
             <%= select_tag :tag_id,
@@ -27,7 +27,9 @@
     <p>検索してください</p>
   <% else %>
     <%= render partial: 'posts/search_users', locals: { users: @search_users } %>
-    <%= render partial: 'posts/posts', locals: { posts: @search_posts } %>
+    <div style="clear:both;">
+      <%= render partial: 'posts/posts', locals: { posts: @search_posts } %>
+    </div>
   <% end %>
   <%= link_to (content_tag(:i, '', class:"fas fa-plus-circle", style:"font-size:50px")), new_post_path, class:"btn-add-tweet" %>
 </div>
