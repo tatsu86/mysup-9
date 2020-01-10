@@ -20,8 +20,10 @@ class UsersController < ApplicationController
     @user = User.find(@current_user.id)
     @myposts = Post.where(user_id: @current_user.id)
     @myposts = @myposts.order(created_at: :desc).page(params[:page])
-    
-    @like_posts = Post.where(id: Post.joins(:likes).select("post_id").where(user_id: @current_user.id))
+
+    # select * from posts where id in (select post_id from likes where user_id=?);
+    like_ids = Like.select("post_id").where(user_id: @current_user.id)
+    @like_posts = Post.where("id in (?)", like_ids)
     @like_posts = @like_posts.order(created_at: :desc).page(params[:page])
   end
 
@@ -30,8 +32,8 @@ class UsersController < ApplicationController
     @myposts = Post.where(user_id: @user.id)
     @myposts = @myposts.order(created_at: :desc).page(params[:page])
     
-    @like_posts = Post.where(id: Post.joins(:likes).select("post_id").where(user_id: @user.id))
-    @like_posts = @like_posts.order(created_at: :desc).page(params[:page])
+    like_ids = Like.select("post_id").where(user_id: @current_user.id)
+    @like_posts = Post.where("id in (?)", like_ids)
   end
   
   def edit
