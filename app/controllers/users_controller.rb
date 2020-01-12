@@ -17,7 +17,13 @@ class UsersController < ApplicationController
   end
   
   def show
-    @user = User.find(@current_user.id)
+    if params[:unique_id].to_s == @current_user.unique_id.to_s
+      @user = User.find_by(unique_id: @current_user.unique_id)
+    else
+      # 他アカウントの情報
+      @user = User.find_by(unique_id: params[:unique_id])
+    end
+
     @myposts = Post.where(user_id: @current_user.id)
     @myposts = @myposts.order(created_at: :desc).page(params[:page])
 
@@ -25,15 +31,6 @@ class UsersController < ApplicationController
     like_ids = Like.select("post_id").where(user_id: @current_user.id)
     @like_posts = Post.where("id in (?)", like_ids)
     @like_posts = @like_posts.order(created_at: :desc).page(params[:page])
-  end
-
-  def other
-    @user = User.find_by(unique_id: params[:unique_id])
-    @myposts = Post.where(user_id: @user.id)
-    @myposts = @myposts.order(created_at: :desc).page(params[:page])
-    
-    like_ids = Like.select("post_id").where(user_id: @current_user.id)
-    @like_posts = Post.where("id in (?)", like_ids)
   end
   
   def edit
