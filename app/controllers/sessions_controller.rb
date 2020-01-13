@@ -1,12 +1,14 @@
 class SessionsController < ApplicationController
     def create
-      user = User.find_by(email: params[:session][:email])
+      email = params[:session][:email]
+      user = User.where(email: email).or(User.where(unique_id: email))
+      user = user[0]
       if user && user.authenticate(params[:session][:password])
         session[:user_id] = user.id
         redirect_to home_path
       else
         redirect_back fallback_location: root_path, flash: {
-          danger: 'メールアドレスまたはパスワードが間違えています。'
+          danger: '入力されたユーザーIDやパスワードが正しくありません。'
         }
       end
     end
