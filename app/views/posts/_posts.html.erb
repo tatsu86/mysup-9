@@ -1,19 +1,22 @@
   <% if posts.length >= 1 %>
     <% posts.each do |post| %>
       <div class="card">
-        <div style="margin-top:5px;">
-          <div class="icon-post-field" style="float:left;">
-              <% if post.user.image? %>
-                  <%= image_tag post.user.image.to_s, class:'icon-user-inner' %>
-              <% else %>
-                  <%= image_tag 'unknown.png', class:'icon-user-inner' %>
-              <% end %>
+        <%# TODO:相対パスで良いのか？ %>
+        <%= link_to "./#{post.user.unique_id.to_s}" do %>
+          <div style="margin-top:5px;">
+              <div class="icon-post-field" style="float:left;">
+                <% if post.user.image? %>
+                    <%= image_tag post.user.image.to_s, class:'icon-user-inner' %>
+                <% else %>
+                    <%= image_tag 'unknown.png', class:'icon-user-inner' %>
+                <% end %>
+              </div>
+            <div style="float:left;">
+              <p style="color:black; font-weight:bold; margin-bottom:0;"><%= post.user.name %></p> 
+              <p style="color:grey">@<%= post.user.unique_id %></p>
+            </div>
           </div>
-          <div style="float:left;">
-            <p style="color:black; font-weight:bold; margin-bottom:0;"><%= post.user.name %></p> 
-            <p style="color:grey">@<%= post.user.unique_id %></p>
-          </div>
-        </div>
+        <% end %>
         <%= link_to "/#{post.user.unique_id.to_s}/status/#{post.id}", style:'text-decoration:none;' do %>
           <div style="width:100%; clear:both; margin-top:-10px;">
             <% post.tags.each do |tag| %>
