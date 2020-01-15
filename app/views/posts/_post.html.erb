@@ -34,11 +34,11 @@
   </div>
   <div>
     <% if post.likes.find_by(user_id: @current_user.id).nil? %>
-      <%= button_to likes_path(post_id: post.id) do %>
+      <%= button_to likes_path(post_id: post.id), remote: true do %>
         <i class="far fa-heart"></i> <%= post.likes.count %>
       <% end %>
     <% else %>
-      <%= button_to like_path(post_id: post.id), method: :delete do %>
+      <%= button_to like_path(post_id: post.id), remote: true, method: :delete do %>
         <i class="fas fa-heart" style="color:pink"></i> <%= post.likes.count %>
       <% end %>
     <% end %>
