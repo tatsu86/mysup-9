@@ -1,4 +1,4 @@
-<% if users.length >= 1 %>
+<% if users.nil? == false && users.length >= 1 %>
     <p style="margin-bottom:0;">アカウント</p>
     <div class="user-list">
         <% users.each do |user| %>

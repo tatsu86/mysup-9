@@ -12,7 +12,9 @@
 
   <body>
     <%= render 'header' %>
-    <%= yield %>
+    <div class="bg-whitesmoke">
+      <%= yield %>
+    </div>
     <% if @current_user %>
       <div class="footer-visible">
         <%= render 'footer' %>  

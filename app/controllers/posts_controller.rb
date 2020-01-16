@@ -11,10 +11,16 @@ class PostsController < ApplicationController
         else
             @search_params = false
         end
-        @search_posts = params[:tag_id].present? ? Tag.find(params[:tag_id]).posts : Post.all
-        @search_posts = @search_posts.search(params[:search])
-        @search_posts = @search_posts.order(created_at: :desc).page(params[:page])
-        @search_users = User.all.search_user(params[:search])
+        # TODO:検索していないときは、最新の20件
+        if @search_params
+            @search_posts = params[:tag_id].present? ? Tag.find(params[:tag_id]).posts : Post.all
+            @search_posts = @search_posts.search(params[:search])
+            @search_posts = @search_posts.order(created_at: :desc).page(params[:page])
+            @search_users = User.all.search_user(params[:search])
+        else
+            @search_posts = Post.all
+            @search_posts = @search_posts.order(created_at: :desc).limit(20).page(params[:page])
+        end
     end
 
     def new
