@@ -52,7 +52,7 @@ class PostsController < ApplicationController
 
     private
     def post_params
-        params.require(:post).permit(:body, :user_id, tag_ids: [])
+        params.require(:post).permit(:body, :user_id,:evaluation, tag_ids: [])
     end
 
     def set_target_post

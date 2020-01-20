@@ -8,6 +8,7 @@
 #  image      :string(255)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  evaluation :float(53)
 #
 
 require 'test_helper'

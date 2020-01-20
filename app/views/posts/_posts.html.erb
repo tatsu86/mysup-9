@@ -25,6 +25,15 @@
             <p class="badge badge-primary"><%= tag.name %></p>
           <% end %>
           <p style="color:black;"><%= post.body %></p>
+          <div style="color:black;">
+            おすすめ度：
+            <% post.evaluation.to_i.times do |i| %>
+              <i class="fas fa-star"></i>
+            <% end %>
+            <% (5 - post.evaluation.to_i).times do |j| %>
+              <i class="far fa-star"></i>
+            <% end %>
+          </div>
         </div>
         <div class="post-index-comment" style="margin-top:10px;">
           <% if post.likes.find_by(user_id: @current_user.id).nil? %>
