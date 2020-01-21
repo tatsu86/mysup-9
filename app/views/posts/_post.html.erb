@@ -29,11 +29,11 @@
     </div>
     <p class="card-text"><%= simple_format(post.body) %></p>
     おすすめ度：
-    <i id="evoluation_1", class="far fa-star"></i>
-    <i id="evoluation_2", class="far fa-star"></i>
-    <i id="evoluation_3", class="far fa-star"></i>
-    <i id="evoluation_4", class="far fa-star"></i>
-    <i id="evoluation_5", class="far fa-star"></i>
+    <i id="evaluation_1", class="far fa-star"></i>
+    <i id="evaluation_2", class="far fa-star"></i>
+    <i id="evaluation_3", class="far fa-star"></i>
+    <i id="evaluation_4", class="far fa-star"></i>
+    <i id="evaluation_5", class="far fa-star"></i>
   </div>
   <div class="post-show-date" style="padding:0 0 10px 10px">
     <%= GetDateFormat(post.created_at) %>
@@ -53,7 +53,7 @@
 
 <script>
   for (var i=1; i<=<%= post.evaluation %>; i++) {
-    $("#evoluation_" + i).removeClass("far fa-star");
-    $("#evoluation_" + i).addClass("fas fa-star");
+    $("#evaluation_" + i).removeClass("far fa-star");
+    $("#evaluation_" + i).addClass("fas fa-star");
   }
 </script>

@@ -31,28 +31,28 @@
       <% end %>
     </div>
     <span></span>
-      <%= f.hidden_field :evaluation, id:"evoluation_value", class: 'form-control' %>
+      <%= f.hidden_field :evaluation, id:"evaluation_value", class: 'form-control' %>
 <% end %>
 <div>
   おすすめ度：
-  <%= button_tag "", id:"evoluation_1", class:"far fa-star", onclick:"ChangeEvoluation(1)" %>
-  <%= button_tag "", id:"evoluation_2", class:"far fa-star", onclick:"ChangeEvoluation(2)" %>
-  <%= button_tag "", id:"evoluation_3", class:"far fa-star", onclick:"ChangeEvoluation(3)" %>
-  <%= button_tag "", id:"evoluation_4", class:"far fa-star", onclick:"ChangeEvoluation(4)" %>
-  <%= button_tag "", id:"evoluation_5", class:"far fa-star", onclick:"ChangeEvoluation(5)" %>
+  <%= button_tag "", id:"evaluation_1", class:"far fa-star", onclick:"ChangeEvaluation(1)" %>
+  <%= button_tag "", id:"evaluation_2", class:"far fa-star", onclick:"ChangeEvaluation(2)" %>
+  <%= button_tag "", id:"evaluation_3", class:"far fa-star", onclick:"ChangeEvaluation(3)" %>
+  <%= button_tag "", id:"evaluation_4", class:"far fa-star", onclick:"ChangeEvaluation(4)" %>
+  <%= button_tag "", id:"evaluation_5", class:"far fa-star", onclick:"ChangeEvaluation(5)" %>
 </div>
 
 <script>
-  function ChangeEvoluation(num) {
-    $("#evoluation_value").val(num);
+  function ChangeEvaluation(num) {
+    $("#evaluation_value").val(num);
     for (var i=1; i<=5; i++) {
-      $("#evoluation_" + i).removeClass("fas fa-star");
-      $("#evoluation_" + i).addClass("far fa-star");
+      $("#evaluation_" + i).removeClass("fas fa-star");
+      $("#evaluation_" + i).addClass("far fa-star");
     }
 
     for (var i=1; i<=num; i++) {
-      $("#evoluation_" + i).removeClass("far fa-star");
-      $("#evoluation_" + i).addClass("fas fa-star");
+      $("#evaluation_" + i).removeClass("far fa-star");
+      $("#evaluation_" + i).addClass("fas fa-star");
     }
   }
 </script>
