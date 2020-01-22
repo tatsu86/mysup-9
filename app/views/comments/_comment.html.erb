@@ -1,5 +1,5 @@
 <div class="p-comment__item">
-  <%= comment.user.name %> <span style="color:grey"><%= comment.user.unique_id %></span>
+  <%= comment.user.name %> <span style="color:grey">@<%= comment.user.unique_id %></span>
   <p><%= simple_format(comment.comment) %></p>
   <div class="p-comment__bottomLine">
     <span><%= GetDateFormat(comment.created_at) %></span>

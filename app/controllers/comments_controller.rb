@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
       comment = Comment.new(comment_params)
       if comment.save
         flash[:success] = 'コメントを投稿しました。'
-        redirect_to comment.post
+        redirect_to "/#{comment.unique_id}/status/#{comment.post_id.to_s}"
       else
         redirect_back fallback_location: root_path, flash: {
           comment: comment,
@@ -15,12 +15,12 @@ class CommentsController < ApplicationController
     def destroy
       comment = Comment.find(params[:id])
       comment.delete
-      redirect_to comment.post, flash: { notice: 'コメントを削除しました。' }
+      redirect_to "/#{comment.unique_id}/status/#{comment.post_id.to_s}", flash: { notice: 'コメントを削除しました。' }
     end
     
     private
     
     def comment_params
-      params.require(:comment).permit(:post_id, :user_id, :comment)
+      params.require(:comment).permit(:post_id, :user_id, :comment, :parent_comment_id, :unique_id)
     end
   end  
