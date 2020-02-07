@@ -17,3 +17,12 @@ module App
     config.time_zone = 'Tokyo'
   end
 end
+
+# request_specとmodel_spec以外は不要
+# config.generators do |g|
+#   g.test_framework :rspec,
+#     view_spec: false,
+#     helper_specs: false,
+#     controller_spec: false,
+#     routing_spec: false
+# end

@@ -6,6 +6,7 @@ class SessionsController < ApplicationController
       if user && user.authenticate(params[:session][:password])
         session[:user_id] = user.id
         redirect_to home_path
+        flash[:success] = "ログインしました。"
       else
         redirect_back fallback_location: root_path, flash: {
           danger: '入力されたユーザーIDやパスワードが正しくありません。'

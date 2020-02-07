@@ -28,7 +28,16 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
   gem 'rails-flog', require: 'flog'
-  gem 'rspec-rails', '~> 3.8'
+  gem 'database_cleaner'
+  gem 'rspec-rails', '~> 3.7.0'
+  gem 'factory_bot_rails', '~> 4.11'
+end
+
+group :test do
+  gem 'capybara', '~> 2.15'
+  gem 'selenium-webdriver'
+  gem 'webdrivers'
+  gem 'rspec_junit_formatter'
 end
 
 group :development do
@@ -40,6 +49,7 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'pry-byebug'
   gem 'annotate'
+  gem 'spring-commands-rspec'
 end
 
 group :production do
