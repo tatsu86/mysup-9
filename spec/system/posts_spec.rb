@@ -1,26 +1,28 @@
-# require 'rails_helper'
+require 'rails_helper'
 
-# describe '投稿管理', type: :system do
-#     describe '投稿一覧表示機能' do
-#         before do
-#             # ユーザーAを作成
-#             user_a = FactoryBot.create(:user, name: 'ユーザーA', email: 'test@example.com' )
-#             # 作成者がユーザーAである投稿を作成
-#             FactoryBot.create(:post, name: '最初の投稿', user: user_a)
-#         end
-#     end
+RSpec.describe Post, type: :system do
+    before do
+        @user1 = FactoryBot.create(:user)
+        visit root_path
 
-#     context 'ユーザーAがログインしているとき' do
-#         before do
-#             # ユーザーAでログインする
-#             visit login_path
-#             fill_in 'メールまたはユーザーID', with: 'test@example.com'
-#             fill_in 'パスワード', with: 'password'
-#             click_button 'ログイン'
-#         end
+        fill_in 'session[email]', with: @user1.email
+        fill_in 'session[password]', with: @user1.password
+        click_button 'ログイン'
+    end
 
-#         it 'ユーザーAが作成した投稿が表示される' do
-#             expect(page).to have_content '最初の投稿'
-#         end
-#     end
-# end
+    it 'ユーザー1で投稿する' do
+        find('.btn-add-tweet').click
+        fill_in 'post[body]', with: 'このプロテインは美味しい。'
+        find('#post-user', visible: false).set(@user1.id)
+        click_button '投稿する'
+        expect(page).to have_content '投稿しました'
+    end
+
+    it 'ユーザー1の投稿を削除する' do
+        post = FactoryBot.create(:post, body: "削除テストようの投稿", user_id: @user1.id)
+        visit "#{@user1.unique_id.to_s}/status/#{post.id.to_s}"
+
+        click_on "削除"
+        expect(page).to have_content "削除しました" 
+    end
+end

@@ -1,31 +1,54 @@
 require 'rails_helper'
 
-RSpec.describe User, type: :system do    
-    it 'ログイン画面が表示されること' do
-        visit root_path
+RSpec.describe User, type: :system do
+    describe 'ログイン前' do
+        it 'ユーザー登録画面を表示する' do
+            visit root_path
+            click_on 'アカウント作成はこちら'
+    
+            expect(page).to have_content 'ユーザー登録'
+        end
 
-        expect(page).to have_content 'ログイン'
-        expect(page).to have_content 'アカウント作成はこちら'
+        it 'ユーザー1はログインする' do
+            user1 = FactoryBot.create(:user)
+            visit root_path
+    
+            fill_in 'session[email]', with: user1.email
+            fill_in 'session[password]', with: user1.password
+            click_button 'ログイン'
+    
+            expect(page).to have_content 'ログインしました'
+        end 
     end
 
-    it 'ユーザー登録画面が表示されること' do
-        visit root_path
-        click_on 'アカウント作成はこちら'
+    describe 'ログイン後' do
+        before do
+            @user1 = FactoryBot.create(:user)
+            visit root_path
+    
+            fill_in 'session[email]', with: @user1.email
+            fill_in 'session[password]', with: @user1.password
+            click_button 'ログイン'
+        end
 
-        expect(page).to have_content 'ユーザー登録'
-    end
+        it 'ユーザー1はプロフィールを変更する' do
+            find(".fa-user-circle").click
+            expect(page).to have_content 'プロフィールを編集'
+            click_on 'プロフィールを編集'
+    
+            expect(page).to have_content 'ユーザー名'
+            expect(page).to have_content '性別'
+            click_button '保存'
+    
+            expect(page).to have_content 'プロフィールを編集'
+        end
+    
+        it 'ユーザー1はログアウトする' do
+            click_on 'ログアウト'
+            expect(page).to have_content 'アカウント作成はこちら'
+        end
 
-    let!(:user) { User.create(name: 'テストユーザー', unique_id: 'example_id', email: 'hayashideveloper@gmail.com', password: '12345678', birthday: '1996/08/06') }
-    it 'ログイン後に投稿一覧画面が表示されること' do
-        user1 = FactoryBot.create(:user)
-        visit root_path
-
-        fill_in 'session[email]', with: user1.email
-        fill_in 'session[password]', with: user1.password
-        # TODO:テストユーザーでログインボタンは見つかるのに、ログインボタンが見つからない意味がわからない
-        # click_on 'ログイン'
-        click_on 'テストユーザーでログイン'
-
-        expect(page).to have_content 'ログインしました'
+        # TODO:ユーザーを削除すると、そのユーザーの投稿が全て削除されること
+        
     end
 end
