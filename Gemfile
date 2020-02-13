@@ -50,6 +50,8 @@ group :development do
   gem 'pry-byebug'
   gem 'annotate'
   gem 'spring-commands-rspec'
+  gem 'rubocop', require: false
+  gem 'rubocop-rails'
 end
 
 group :production do

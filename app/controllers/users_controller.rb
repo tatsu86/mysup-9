@@ -39,7 +39,7 @@ class UsersController < ApplicationController
   
   def update
     @user = User.find(@current_user.id)
-    if @user.update_attributes(update_account_params)
+    if @user.update(update_account_params)
       redirect_to "/#{@current_user.unique_id.to_s}"
     else
       redirect_back fallback_location: settings_profile_path, flash:{
