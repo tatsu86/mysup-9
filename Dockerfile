@@ -1,6 +1,6 @@
-FROM ruby:2.4.5
+FROM ruby:2.5.6
 
-RUN apt-get update -qq && apt-get install -y build-essential nodejs mysql-client
+RUN apt-get update -qq && apt-get install -y build-essential nodejs mariadb-client
 
 # TODO:Chromeのバージョンを環境変数で指定する
 # chromeの追加

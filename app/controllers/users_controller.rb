@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def new 
     @user = User.new(flash[:user])
+    flash[:success] = "アカウントを作成しました。"
   end
   
   def create
