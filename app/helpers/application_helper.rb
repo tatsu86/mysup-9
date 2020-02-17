@@ -15,8 +15,13 @@ module ApplicationHelper
         if (today - date.to_date).to_i <= 7
           if today == date.to_date
             if now.hour == date.hour
-              # 1時間以内
-              result = (now.min - date.min).to_s + "分前"
+              if now.min == date.min
+                # 1分以内
+                result = (now.sec - date.sec).to_s + "秒前"
+              else
+                # 1時間以内
+                result = (now.min - date.min).to_s + "分前"
+              end
             else
               # 当日
               result = (now.hour - date.hour).to_s + "時間前"

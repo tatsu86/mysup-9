@@ -23,6 +23,6 @@ RSpec.describe Post, type: :system do
         visit "#{@user1.unique_id.to_s}/status/#{post.id.to_s}"
 
         click_on "削除"
-        expect(page).to have_content "削除しました" 
+        expect(page).to have_content "投稿を削除しました" 
     end
 end
