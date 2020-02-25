@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :posts, only: %i[new create destroy]
   resources :comments, only: %i[create destroy]
   resources :users, only: %i[new create update]
+  resources :relationships, only: %i[create destroy]
   resources :likes, only: %i[create destroy]
 
   get ':unique_id', to: 'users#show'

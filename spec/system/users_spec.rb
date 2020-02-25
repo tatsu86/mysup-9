@@ -9,7 +9,20 @@ RSpec.describe User, type: :system do
             expect(page).to have_content 'ユーザー登録'
         end
 
-        # TODO:アカウント作成のvalidationを検証する
+        it 'ユーザー1を登録する' do
+            visit root_path
+            click_on 'アカウント作成はこちら'
+            # user = FactoryBot.create(:user, unique_id: "uni")
+            fill_in 'user[name]', with: 'uni太郎'
+            fill_in 'user[unique_id]', with: 'uniid'
+            fill_in 'user[email]', with: 'uni@gmail.com'
+            fill_in 'user[password]', with: '12345678'
+            fill_in 'user[password_confirmation]', with: '12345678'
+            click_button '作成'
+
+            expect(page).to have_content 'アカウントを作成しました'
+        end
+
         it '不正なunique_idのユーザーは登録できない' do
             visit root_path
             click_on 'アカウント作成はこちら'
@@ -21,7 +34,7 @@ RSpec.describe User, type: :system do
             fill_in 'user[password_confirmation]', with: '12345678'
             click_button '作成'
 
-            expect(page).to have_content 'アカウントを作成しました'
+            expect(page).to have_content 'IDは不正な値です'
         end
 
         it 'ユーザー1はログインする' do

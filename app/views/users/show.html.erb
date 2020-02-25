@@ -1,6 +1,13 @@
 <div class="container" style="margin-bottom:60px"> 
   <div style="margin-top:10px;">
+    <% if flash[:alert] %>
+        <div class="alert alert-danger"><%= flash[:notice] %></div>
+    <% end %>
+    <% if flash[:success] %>
+        <div class="alert alert-primary"><%= flash[:success] %></div>
+    <% end %>
 
+    <%= render partial: 'relationships/follow_button', locals: { user: @user } %>
     <%= form_with url: "/#{@current_user.unique_id.to_s}", method: :get do |f| %>
       <div class="profile-outline">
         <div class="icon-profile-field", style="float:left;">
