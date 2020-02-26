@@ -42,9 +42,11 @@ class User < ApplicationRecord
   MAIL_FORMAT = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i.freeze
   validates :email, presence: true, uniqueness: true, length: { maximum: 255 }, format: { with: MAIL_FORMAT }
 
-  validates :password, length: { minimum: 8 }, allow_nil: true
+  # 6文字以上
+  validates :password, length: { minimum: 6 }, allow_nil: true
 
-  ID_FORMAT = /\A[a-zA-Z0-9]+\z/.freeze
+  # 英数字、アンダースコアのみ許容
+  ID_FORMAT = /\A[a-zA-Z0-9_]+\z/.freeze
   validates :unique_id, presence: true, uniqueness: true, length: { maximum: 20 } , format: { with: ID_FORMAT }
 
   enum sex: { 男性:1,女性:2 }

@@ -8,12 +8,12 @@ RSpec.describe User, type: :system do
       expect(page).to have_content 'ユーザー登録'
     end
 
-    it 'ユーザー1を登録する' do
+    it 'unique_idが英数字のみのユーザーを登録する' do
       visit root_path
       click_on 'アカウント作成はこちら'
       # user = FactoryBot.create(:user, unique_id: "uni")
       fill_in 'user[name]', with: 'uni太郎'
-      fill_in 'user[unique_id]', with: 'uniid'
+      fill_in 'user[unique_id]', with: 'uni123'
       fill_in 'user[email]', with: 'uni@gmail.com'
       fill_in 'user[password]', with: '12345678'
       fill_in 'user[password_confirmation]', with: '12345678'
@@ -21,17 +21,30 @@ RSpec.describe User, type: :system do
       expect(page).to have_content 'アカウントを作成しました'
     end
 
-    it '不正なunique_idのユーザーは登録できない' do
+    it 'unique_idに「@」を含むユーザーは登録できない' do
       visit root_path
       click_on 'アカウント作成はこちら'
       # user = FactoryBot.create(:user, unique_id: "uni")
       fill_in 'user[name]', with: 'uni太郎'
-      fill_in 'user[unique_id]', with: '@uni_id'
+      fill_in 'user[unique_id]', with: '@uniid'
       fill_in 'user[email]', with: 'uni@gmail.com'
       fill_in 'user[password]', with: '12345678'
       fill_in 'user[password_confirmation]', with: '12345678'
       click_button '作成'  
       expect(page).to have_content 'IDは不正な値です'
+    end
+
+    it 'unique_idに「_(アンダースコア)」を含むユーザーを登録する' do
+      visit root_path
+      click_on 'アカウント作成はこちら'
+      # user = FactoryBot.create(:user, unique_id: "uni")
+      fill_in 'user[name]', with: 'uni太郎'
+      fill_in 'user[unique_id]', with: 'uni_id'
+      fill_in 'user[email]', with: 'uni@gmail.com'
+      fill_in 'user[password]', with: '12345678'
+      fill_in 'user[password_confirmation]', with: '12345678'
+      click_button '作成'  
+      expect(page).to have_content 'アカウントを作成しました'
     end
 
     it 'ユーザー1はログインする' do
