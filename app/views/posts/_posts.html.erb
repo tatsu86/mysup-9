@@ -5,13 +5,13 @@
       <div class="user-field">
         <%= link_to "./#{post.user.unique_id.to_s}" do %>
           <div style="margin-top:5px;">
-              <div class="icon-post-field" style="float:left;">
-                <% if post.user.image? %>
-                    <%= image_tag post.user.image.to_s, class:'icon-user-inner' %>
-                <% else %>
-                    <%= image_tag 'unknown.png', class:'icon-user-inner' %>
-                <% end %>
-              </div>
+            <div class="icon-post-field" style="float:left;">
+              <% if post.user.image? %>
+                <%= image_tag post.user.image.to_s, class:'icon-user-inner' %>
+              <% else %>
+                <%= image_tag 'unknown.png', class:'icon-user-inner' %>
+              <% end %>
+            </div>
             <div style="float:left;">
               <p style="color:black; font-weight:bold; margin-bottom:0;"><%= post.user.name %></p> 
               <p style="color:grey">@<%= post.user.unique_id %></p>
@@ -37,9 +37,9 @@
         </div>
         <div class="post-index-comment" style="margin-top:10px;">
           <% if post.likes.find_by(user_id: @current_user.id).nil? %>
-              <i class="far fa-heart"></i> <%= post.likes.count %>
+            <i class="far fa-heart"></i> <%= post.likes.count %>
           <% else %>
-              <i class="fas fa-heart" style="color:pink"></i> <%= post.likes.count %>
+            <i class="fas fa-heart" style="color:pink"></i> <%= post.likes.count %>
           <% end %> 
           　<i class="far fa-comment"></i> <%= post.comments.count %>
         </div>

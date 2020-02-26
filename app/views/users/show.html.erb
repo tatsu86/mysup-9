@@ -1,55 +1,55 @@
-<div class="container" style="margin-bottom:60px"> 
+<div class="container" style="margin-bottom:60px">
   <div style="margin-top:10px;">
     <% if flash[:alert] %>
-        <div class="alert alert-danger"><%= flash[:notice] %></div>
+    <div class="alert alert-danger"><%= flash[:notice] %></div>
     <% end %>
     <% if flash[:success] %>
-        <div class="alert alert-primary"><%= flash[:success] %></div>
+    <div class="alert alert-primary"><%= flash[:success] %></div>
     <% end %>
 
     <%= render partial: 'relationships/follow_button', locals: { user: @user } %>
     <%= form_with url: "/#{@current_user.unique_id.to_s}", method: :get do |f| %>
-      <div class="profile-outline">
-        <div class="icon-profile-field", style="float:left;">
-          <% if @user.image? %>
-            <%= image_tag @user.image.to_s, class:'icon-profile-inner' %>
-          <% else %>
-            <%= image_tag 'unknown.png', class:'icon-profile-inner' %>
-          <% end %>
-        </div>
-        <div style="float:left; margin-left:10px;">
-          <p id="account-name"><%= @user.name %></p>
-          <p class='uniqueid'>@<%= @user.unique_id %></p>
-          <p>
-            <%= @user.sex %>　
-            <% if @user.birthday.nil? == false %>
-              <%= calcAge(@user.birthday.to_s) %>歳
-            <% end %>
-          </p>
-        </div>
-      </div>
-      <span style="clear: both;"></span>
-      <div style="clear: both; margin-top: 10px;">
-        <% if @current_user.id == @user.id %>
-          <%= link_to 'プロフィールを編集', settings_profile_path, class: 'profile-edit' %>
+    <div class="profile-outline">
+      <div class="icon-profile-field" , style="float:left;">
+        <% if @user.image? %>
+        <%= image_tag @user.image.to_s, class:'icon-profile-inner' %>
+        <% else %>
+        <%= image_tag 'unknown.png', class:'icon-profile-inner' %>
         <% end %>
-        <div class="form-group">
-          <%= f.label :introduction, '自己紹介' %>
-          <%= f.text_field :introduction, class: "form-control", readonly: true, value: @user.introduction %>
-        </div>
-        <div class="form-group">
-          <%= f.label :favorite1, '愛用サプリ' %>
-          <%= f.text_field :favorite1, class:"form-control", style:"margin-bottom:3px;", readonly: true, value: @user.favorite1 %>
-          <%= f.text_field :favorite2, class:"form-control", style:"margin-bottom:3px;", readonly: true, value: @user.favorite2 %>
-          <%= f.text_field :favorite3, class:"form-control", readonly: true, value: @user.favorite3 %>
-        </div>
       </div>
+      <div style="float:left; margin-left:10px;">
+        <p id="account-name"><%= @user.name %></p>
+        <p class='uniqueid'>@<%= @user.unique_id %></p>
+        <p>
+          <%= @user.sex %>　
+          <% if @user.birthday.nil? == false %>
+          <%= calcAge(@user.birthday.to_s) %>歳
+          <% end %>
+        </p>
+      </div>
+    </div>
+    <span style="clear: both;"></span>
+    <div style="clear: both; margin-top: 10px;">
+      <% if @current_user.id == @user.id %>
+      <%= link_to 'プロフィールを編集', settings_profile_path, class: 'profile-edit' %>
+      <% end %>
+      <div class="form-group">
+        <%= f.label :introduction, '自己紹介' %>
+        <%= f.text_field :introduction, class: "form-control", readonly: true, value: @user.introduction %>
+      </div>
+      <div class="form-group">
+        <%= f.label :favorite1, '愛用サプリ' %>
+        <%= f.text_field :favorite1, class:"form-control", style:"margin-bottom:3px;", readonly: true, value: @user.favorite1 %>
+        <%= f.text_field :favorite2, class:"form-control", style:"margin-bottom:3px;", readonly: true, value: @user.favorite2 %>
+        <%= f.text_field :favorite3, class:"form-control", readonly: true, value: @user.favorite3 %>
+      </div>
+    </div>
     <% end %>
   </div>
 
   <div class="tabs">
     <input id="all" type="radio" name="tab_item" checked>
-    <label class="tab_item" for="all">投稿</label>  
+    <label class="tab_item" for="all">投稿</label>
     <input id="programming" type="radio" name="tab_item">
     <label class="tab_item" for="programming">いいね</label>
     <div class="tab_content" id="all_content">

@@ -1,31 +1,31 @@
 <div class="container--sm bottom-space">
-    <div class="d-flex align-items-center" style="margin: 5px 15px">
-    <%# TODO:placeholderに虫眼鏡アイコンを表示する %>
-        <%= form_tag(explore_path,:method => 'get') do %>
-            <%= text_field_tag :search, params[:search], class:"searchBox font-awesome fa", placeholder:"検索" %>
-            <%= submit_tag '検索', :name => nil, style:"display:none;" %>
-            <%= select_tag :tag_id,
-              options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
-              {
-                prompt: 'タグで絞り込み',
-                class: 'form-control boards__select',
-                style:'margin-left: 4px;',
-                onchange: 'submit(this.form);'
-              }
-            %>
-        <% end %>
-    </div>
+  <div class="d-flex align-items-center" style="margin: 5px 15px">
+  <%# TODO:placeholderに虫眼鏡アイコンを表示する %>
+    <%= form_tag(explore_path,:method => 'get') do %>
+      <%= text_field_tag :search, params[:search], class:"searchBox font-awesome fa", placeholder:"検索" %>
+      <%= submit_tag '検索', :name => nil, style:"display:none;" %>
+      <%= select_tag :tag_id,
+        options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
+        {
+          prompt: 'タグで絞り込み',
+          class: 'form-control boards__select',
+          style:'margin-left: 4px;',
+          onchange: 'submit(this.form);'
+        }
+      %>
+    <% end %>
+  </div>
 
-    <% if flash[:notice] %>
-        <div class="alert alert-danger"><%= flash[:notice] %></div>
-    <% end %>
-    <% if flash[:success] %>
-        <div class="alert alert-primary"><%= flash[:success] %></div>
-    <% end %>
-  
-    <%= render partial: 'posts/search_users', locals: { users: @search_users } %>
-    <div style="clear:both;">
-      <%= render partial: 'posts/posts', locals: { posts: @search_posts } %>
-    </div>
+  <% if flash[:notice] %>
+    <div class="alert alert-danger"><%= flash[:notice] %></div>
+  <% end %>
+  <% if flash[:success] %>
+    <div class="alert alert-primary"><%= flash[:success] %></div>
+  <% end %>
+
+  <%= render partial: 'posts/search_users', locals: { users: @search_users } %>
+  <div style="clear:both;">
+    <%= render partial: 'posts/posts', locals: { posts: @search_posts } %>
+  </div>
   <%= link_to (content_tag(:i, '', class:"fas fa-plus-circle", style:"font-size:50px")), new_post_path, class:"btn-add-tweet" %>
 </div>

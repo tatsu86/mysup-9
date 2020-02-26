@@ -1,23 +1,23 @@
 <% if users.nil? == false && users.length >= 1 %>
-    <p style="margin-bottom:0;">アカウント</p>
-    <div class="user-list">
-        <% users.each do |user| %>
-            <%= link_to "./#{user.unique_id.to_s}" do %>
-                <div class="user-card">
-                    <div class="icon-post-field" style="float:left;">
-                        <% if user.image? %>
-                            <%= image_tag user.image.to_s, class:'icon-user-inner' %>
-                        <% else %>
-                            <%= image_tag 'unknown.png', class:'icon-user-inner' %>
-                        <% end %>
-                    </div>
-                    <div class="user-detail">
-                        <p style="color:black; font-weight:bold; margin-bottom:0;"><%= user.name %></p>
-                        <p style="color:grey;">@<%= user.unique_id %></p>
-                        <p style="color:black;"><%= user.introduction %></p>
-                    </div>
-                </div>
+  <p style="margin-bottom:0;">アカウント</p>
+  <div class="user-list">
+    <% users.each do |user| %>
+      <%= link_to "./#{user.unique_id.to_s}" do %>
+        <div class="user-card">
+          <div class="icon-post-field" style="float:left;">
+            <% if user.image? %>
+              <%= image_tag user.image.to_s, class:'icon-user-inner' %>
+            <% else %>
+              <%= image_tag 'unknown.png', class:'icon-user-inner' %>
             <% end %>
-        <% end %>
-    </div>
+            </div>
+            <div class="user-detail">
+              <p style="color:black; font-weight:bold; margin-bottom:0;"><%= user.name %></p>
+              <p style="color:grey;">@<%= user.unique_id %></p>
+              <p style="color:black;"><%= user.introduction %></p>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
 <% end %>
