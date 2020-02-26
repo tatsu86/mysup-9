@@ -1,14 +1,14 @@
 <div class="container" style="margin-bottom:60px">
   <div style="margin-top:10px;">
     <% if flash[:alert] %>
-    <div class="alert alert-danger"><%= flash[:notice] %></div>
+      <div class="alert alert-danger"><%= flash[:notice] %></div>
     <% end %>
     <% if flash[:success] %>
-    <div class="alert alert-primary"><%= flash[:success] %></div>
+      <div class="alert alert-primary"><%= flash[:success] %></div>
     <% end %>
 
     <%= render partial: 'relationships/follow_button', locals: { user: @user } %>
-    <%= form_with url: "/#{@current_user.unique_id.to_s}", method: :get do |f| %>
+    
     <div class="profile-outline">
       <div class="icon-profile-field" , style="float:left;">
         <% if @user.image? %>
@@ -28,23 +28,20 @@
         </p>
       </div>
     </div>
-    <span style="clear: both;"></span>
     <div style="clear: both; margin-top: 10px;">
       <% if @current_user.id == @user.id %>
-      <%= link_to 'プロフィールを編集', settings_profile_path, class: 'profile-edit' %>
+        <%= link_to 'プロフィールを編集', settings_profile_path, class: 'profile-edit' %>
       <% end %>
-      <div class="form-group">
-        <%= f.label :introduction, '自己紹介' %>
-        <%= f.text_field :introduction, class: "form-control", readonly: true, value: @user.introduction %>
-      </div>
-      <div class="form-group">
-        <%= f.label :favorite1, '愛用サプリ' %>
-        <%= f.text_field :favorite1, class:"form-control", style:"margin-bottom:3px;", readonly: true, value: @user.favorite1 %>
-        <%= f.text_field :favorite2, class:"form-control", style:"margin-bottom:3px;", readonly: true, value: @user.favorite2 %>
-        <%= f.text_field :favorite3, class:"form-control", readonly: true, value: @user.favorite3 %>
+      <div style="margin-bottom: 10px">
+        <p><%= @user.introduction %></p>
+        <% if @user.favorite1.blank? == false || @user.favorite2.blank? == false || @user.favorite3.blank? == false %>
+          愛用サプリ
+          <% if @user.favorite1.blank? == false %><p>・<%= @user.favorite1 %></p><% end %>
+          <% if @user.favorite2.blank? == false %><p>・<%= @user.favorite2 %></p><% end %>
+          <% if @user.favorite3.blank? == false %><p>・<%= @user.favorite3 %></p><% end %>
+        <% end %>
       </div>
     </div>
-    <% end %>
   </div>
 
   <div class="tabs">
@@ -63,5 +60,4 @@
       </div>
     </div>
   </div>
-
 </div>
