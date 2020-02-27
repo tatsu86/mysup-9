@@ -6,44 +6,8 @@
     <% if flash[:success] %>
       <div class="alert alert-primary"><%= flash[:success] %></div>
     <% end %>
-
-    <%= render partial: 'relationships/follow_button', locals: { user: @user } %>
-    
-    <div class="profile-outline">
-      <div class="icon-profile-field" , style="float:left;">
-        <% if @user.image? %>
-        <%= image_tag @user.image.to_s, class:'icon-profile-inner' %>
-        <% else %>
-        <%= image_tag 'unknown.png', class:'icon-profile-inner' %>
-        <% end %>
-      </div>
-      <div style="float:left; margin-left:10px;">
-        <p id="account-name"><%= @user.name %></p>
-        <p class='uniqueid'>@<%= @user.unique_id %></p>
-        <p>
-          <%= @user.sex %>　
-          <% if @user.birthday.nil? == false %>
-          <%= calcAge(@user.birthday.to_s) %>歳
-          <% end %>
-        </p>
-      </div>
-    </div>
-    <div style="clear: both; margin-top: 10px;">
-      <% if @current_user.id == @user.id %>
-        <%= link_to 'プロフィールを編集', settings_profile_path, class: 'profile-edit' %>
-      <% end %>
-      <div style="margin-bottom: 10px">
-        <p><%= @user.introduction %></p>
-        <% if @user.favorite1.blank? == false || @user.favorite2.blank? == false || @user.favorite3.blank? == false %>
-          愛用サプリ
-          <% if @user.favorite1.blank? == false %><p>・<%= @user.favorite1 %></p><% end %>
-          <% if @user.favorite2.blank? == false %><p>・<%= @user.favorite2 %></p><% end %>
-          <% if @user.favorite3.blank? == false %><p>・<%= @user.favorite3 %></p><% end %>
-        <% end %>
-      </div>
-    </div>
   </div>
-
+  <%= render partial: 'profile', locals: { user: @user } %>
   <div class="tabs">
     <input id="all" type="radio" name="tab_item" checked>
     <label class="tab_item" for="all">投稿</label>

@@ -25,7 +25,7 @@ class UsersController < ApplicationController
       @user = User.find_by(unique_id: params[:unique_id])
     end
 
-    @myposts = Post.where(user_id: @current_user.id)
+    @myposts = Post.where(user_id: @user.id)
     @myposts = @myposts.order(created_at: :desc).page(params[:page])
 
     # select * from posts where id in (select post_id from likes where user_id=?);
