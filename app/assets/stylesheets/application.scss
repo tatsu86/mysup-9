@@ -437,3 +437,20 @@ input[name="tab_item"] {
 #post-user {
   
 }
+
+.user-status {
+  margin: 0 auto;
+  padding: 12px, 0px;
+  border-top: 1px solid rgba(var(--b38,219,219,219),1);
+  li {
+    display: inline-block;
+    width: calc(100% / 3);
+    text-align: center;
+    .label {
+      color: gray;
+    }
+    .value {
+      font-weight: bold;
+    }
+  }
+}

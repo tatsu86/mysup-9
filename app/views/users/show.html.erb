@@ -8,6 +8,7 @@
     <% end %>
   </div>
   <%= render partial: 'profile', locals: { user: @user } %>
+  <%= render partial: 'status', locals: { user: @user } %>
   <div class="tabs">
     <input id="all" type="radio" name="tab_item" checked>
     <label class="tab_item" for="all">投稿</label>

@@ -1,0 +1,15 @@
+<ul class="user-status">
+  <li>
+    <span class="label">投稿</span><br>
+    <span class="value"><%= user_posts_count(user.id) %></span><br>
+    <span class="label">件</span>
+  </li><li>
+    <span class="label">フォロワー</span><br>
+    <span class="value"><%= follower_count(@user.id) %></span><br>
+    <span class="label">人</span>
+  </li><li>
+    <span class="label">フォロー中</span><br>
+    <span class="value"><%= @user.relationships.count %></span><br>
+    <span class="label">人</span>
+  </li>
+</ul>
