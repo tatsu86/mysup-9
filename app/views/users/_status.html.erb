@@ -4,12 +4,16 @@
     <span class="value"><%= user_posts_count(user.id) %></span><br>
     <span class="label">件</span>
   </li><li>
-    <span class="label">フォロワー</span><br>
-    <span class="value"><%= follower_count(@user.id) %></span><br>
+    <%= link_to "/#{user.unique_id.to_s}/followers" do %>
+      <span class="label">フォロワー</span><br>
+      <span class="value"><%= follower_count(@user.id) %></span><br>
+    <% end %>
     <span class="label">人</span>
   </li><li>
-    <span class="label">フォロー中</span><br>
-    <span class="value"><%= @user.relationships.count %></span><br>
+    <%= link_to "/#{user.unique_id.to_s}/following" do %>
+      <span class="label">フォロー中</span><br>
+      <span class="value"><%= @user.relationships.count %></span><br>
+    <% end %>
     <span class="label">人</span>
   </li>
 </ul>

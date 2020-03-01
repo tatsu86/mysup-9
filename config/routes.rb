@@ -15,4 +15,6 @@ Rails.application.routes.draw do
   resources :likes, only: %i[create destroy]
 
   get ':unique_id', to: 'users#show'
+  get ':unique_id/following', to: 'users#following'
+  get ':unique_id/followers', to: 'users#followers'
 end

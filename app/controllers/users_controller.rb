@@ -33,6 +33,22 @@ class UsersController < ApplicationController
     @like_posts = Post.where("id in (?)", like_ids)
     @like_posts = @like_posts.order(created_at: :desc).page(params[:page])
   end
+
+  def following
+    follow_ids = []
+    @current_user.relationships.order(created_at: :desc).each do |relation|
+      follow_ids.push(relation.follow_id)
+    end
+    @follows = User.where(id: follow_ids).order(['field(id, ?)', follow_ids])
+  end
+
+  def followers
+    user_ids = []
+    Relationship.where(follow_id: @current_user.id).order(created_at: :desc).each do |relation|
+      user_ids.push(relation.user_id)
+    end
+    @followers = User.where(id: user_ids).order(['field(id, ?)', user_ids])
+  end
   
   def edit
     @user = User.find(@current_user.id)

@@ -23,7 +23,8 @@
     <div class="alert alert-primary"><%= flash[:success] %></div>
   <% end %>
 
-  <%= render partial: 'posts/search_users', locals: { users: @search_users } %>
+  <p style="margin-bottom:0;">アカウント</p>
+  <%= render partial: 'users/users', locals: { users: @search_users } %>
   <div style="clear:both;">
     <%= render partial: 'posts/posts', locals: { posts: @search_posts } %>
   </div>
