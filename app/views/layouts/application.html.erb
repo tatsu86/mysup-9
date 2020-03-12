@@ -12,10 +12,8 @@
 
   <body>
     <%= render 'header' %>
-    <div class="bg-whitesmoke">
-      <%= render 'layouts/flash' %>
-      <%= yield %>
-    </div>
+    <%= render 'layouts/flash' %>
+    <%= yield %>
     <% if user_signed_in? %>
       <div class="footer-visible">
         <%= render 'footer' %>  

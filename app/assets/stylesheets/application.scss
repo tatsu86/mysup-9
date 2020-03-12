@@ -52,6 +52,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background-color: whitesmoke;
 }
 
 footer {
@@ -79,10 +80,6 @@ footer {
   @include mq {
     visibility: visible;
   }
-}
-
-.bg-whitesmoke {
-  background-color: whitesmoke;
 }
 
 .container--sm {
