@@ -9,32 +9,24 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <% if @current_user %>
+      <% if user_signed_in? %>
         <%= header_link_item('投稿一覧', home_path) %>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <% if @current_user %>
-              <%= @current_user.name %>
-            <% else %>
-              ログイン
-            <% end %>
+            <%= current_user.name %>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <%= link_to 'マイページ', "/#{@current_user.unique_id.to_s}", class: 'dropdown-item' %>
-              <%= link_to 'ログアウト', logout_path, method: :delete, class: 'dropdown-item' %>
+              <%= link_to 'マイページ', "/#{current_user.unique_id.to_s}", class: 'dropdown-item' %>
+              <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
           </div>
         </li>
       <% else %>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <% if @current_user %>
-              <%= @current_user.name %>
-            <% else %>
-              ログイン
-            <% end %>
+            ログイン
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <%= link_to '登録', new_user_path, class: 'dropdown-item' %>
+              <%= link_to '登録', new_user_registration_path, class: 'dropdown-item' %>
               <%= link_to 'ログイン', root_path, class: 'dropdown-item' %>
           </div>
         </li>

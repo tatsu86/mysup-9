@@ -22,6 +22,7 @@ gem 'carrierwave'
 gem 'fog-aws'
 gem 'rmagick'
 gem 'mini_magick'
+gem 'devise'
 
 
 group :development, :test do

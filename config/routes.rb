@@ -1,16 +1,24 @@
 Rails.application.routes.draw do
   root 'home#index'
-  get 'explore', to: 'posts#search'
   get 'home', to: 'posts#index'
-  get ':unique_id/status/:id', to: 'posts#show'
-  get 'settings/profile', to: 'users#edit'
-  
-  post 'login', to: 'sessions#create'
-  delete 'logout', to: 'sessions#destroy'
+
+  devise_for :users, controllers: {
+    registrations: 'users/registrations',
+    sessions: 'users/sessions'
+  }
 
   resources :posts, only: %i[new create destroy]
+  get 'explore', to: 'posts#search'
+  get ':unique_id/status/:id', to: 'posts#show'
+  
+  get 'settings/profile', to: 'users#edit'
+  
+  # post 'login', to: 'sessions#create'
+  # delete 'logout', to: 'sessions#destroy'
+
+  
   resources :comments, only: %i[create destroy]
-  resources :users, only: %i[new create update]
+  resources :users, only: %i[update]
   resources :relationships, only: %i[create destroy]
   resources :likes, only: %i[create destroy]
 

@@ -2,24 +2,36 @@
 #
 # Table name: users
 #
-#  id              :integer          not null, primary key
-#  name            :string(255)      not null
-#  introduction    :string(255)
-#  birthday        :date
-#  email           :string(255)      not null
-#  unique_id       :string(255)      not null
-#  image           :string(255)
-#  password_digest :string(255)      not null
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  sex             :integer
-#  sweet_tooth     :integer
-#  favorite1       :string(255)
-#  favorite2       :string(255)
-#  favorite3       :string(255)
+#  id                     :integer          not null, primary key
+#  name                   :string(255)      not null
+#  introduction           :string(255)
+#  birthday               :date
+#  email                  :string(255)      not null
+#  unique_id              :string(255)      not null
+#  image                  :string(255)
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#  sex                    :integer
+#  sweet_tooth            :integer
+#  favorite1              :string(255)
+#  favorite2              :string(255)
+#  favorite3              :string(255)
+#  encrypted_password     :string(255)      default(""), not null
+#  reset_password_token   :string(255)
+#  reset_password_sent_at :datetime
+#  remember_created_at    :datetime
+#
+# Indexes
+#
+#  index_users_on_email                 (email) UNIQUE
+#  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
 
 class User < ApplicationRecord
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable
   # Post関連
   has_many :posts, dependent: :delete_all
   # Like関連
@@ -34,9 +46,9 @@ class User < ApplicationRecord
 
   # has_one_attached :image
   mount_uploader :image, ImageUploader
-  has_secure_password
+  # devise導入する場合は、has_secure_passwordが不要
+  # has_secure_password
 
-  # Validation
   validates :name, presence: true, length: { maximum: 20 }
 
   MAIL_FORMAT = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i.freeze

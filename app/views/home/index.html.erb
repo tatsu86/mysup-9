@@ -1,8 +1,8 @@
-<% if @current_user %>
+<% if user_signed_in? %>
   <%# TODO:「/home」にリダイレクトする %>
   <%= render template: "/posts/index" %>
 <% else %>
 　<div class="back-image-capsules">
-　  <%= render partial: 'users/login_form' %>
+　  <%= render partial: 'users/sessions/new' %>
 　</div>
 <% end %>

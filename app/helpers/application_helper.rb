@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def current_user?(user)
+    user == current_user
+  end
+
   def header_link_item(name, path)
     class_name = 'nav-item'
     class_name << ' active' if current_page?(path)
@@ -7,6 +11,21 @@ module ApplicationHelper
       link_to name, path, class: 'nav-link'
     end
   end
+
+  # デバイスのエラーメッセージ出力
+  # def devise_error_messages
+  #   return "" if resource.errors.empty?
+  #   html = ""
+  #   # HTML生成
+  #   messages = resource.errors.full_messages.each do |msg|
+  #     html += <<-EOF
+  #       <div class="errors_field alert alert-danger" role="alert">
+  #         <p class="error_msg">#{msg}</p>
+  #       </div>
+  #     EOF
+  #   end
+  #   html.html_safe
+  # end
 
   def GetDateFormat(date)
     now = DateTime.current

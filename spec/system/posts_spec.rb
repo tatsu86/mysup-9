@@ -5,8 +5,8 @@ RSpec.describe Post, type: :system do
     @user1 = FactoryBot.create(:user)
     visit root_path
 
-    fill_in 'session[email]', with: @user1.email
-    fill_in 'session[password]', with: @user1.password
+    fill_in 'メールアドレス', with: @user1.email
+    fill_in 'パスワード', with: @user1.password
     click_button 'ログイン'
   end
 

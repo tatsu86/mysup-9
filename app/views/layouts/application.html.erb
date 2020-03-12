@@ -15,7 +15,7 @@
     <div class="bg-whitesmoke">
       <%= yield %>
     </div>
-    <% if @current_user %>
+    <% if user_signed_in? %>
       <div class="footer-visible">
         <%= render 'footer' %>  
       </div>

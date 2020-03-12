@@ -21,7 +21,7 @@
   <%= render partial: 'relationships/follow_button', locals: { user: @user } %>
 
   <div style="clear: both; margin-top: 10px;">
-    <% if @current_user.id == @user.id %>
+    <% if current_user.id == @user.id %>
       <%= link_to 'プロフィールを編集', settings_profile_path, class: 'profile-edit' %>
     <% end %>
     <div style="margin-bottom: 10px">

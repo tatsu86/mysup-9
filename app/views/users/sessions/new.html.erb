@@ -1,0 +1,41 @@
+<div class="back-image-capsules">
+  <div class="container">
+    <h2>ログイン</h2>
+    <div class="bgclear">
+      <div style="padding:15px">
+        <%= render "devise/shared/error_messages", resource: resource %>
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <%# form_with scope: :session, url: new_user_session_path do |f| %>
+          <div class="form-group">
+            <%= f.label :email, 'メールアドレス' %>
+            <%= f.text_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label :password, 'パスワード' %>
+            <%= f.password_field :password, autocomplete: "current-password", class: 'form-control' %>
+          </div>
+
+          <% if devise_mapping.rememberable? %>
+            <div class="field">
+              <%= f.check_box :remember_me %>
+              <%= f.label :remember_me %>
+            </div>
+          <% end %>
+
+          <div class="actions">
+            <%= f.submit "ログイン", class: 'btn btn-primary', style:"width:100%" %>
+          </div>
+        <% end %>
+
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <%# form_with scope: :session, url: new_user_session_path do |f| %>
+          <%= f.hidden_field :email, value:'hayashideveloper@gmail.com' %>
+          <%= f.hidden_field :password, value:'111111' %>
+          <%= f.submit 'テストユーザーでログイン', class: 'btn btn-success', style:'width:100%; margin-top:5px' %>
+        <% end %>
+
+        <%= render "users/shared/links" %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -36,7 +36,7 @@
           </div>
         </div>
         <div class="post-index-comment" style="margin-top:10px;">
-          <% if post.likes.find_by(user_id: @current_user.id).nil? %>
+          <% if post.likes.find_by(user_id: current_user.id).nil? %>
             <i class="far fa-heart"></i> <%= post.likes.count %>
           <% else %>
             <i class="fas fa-heart" style="color:pink"></i> <%= post.likes.count %>

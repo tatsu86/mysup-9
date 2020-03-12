@@ -6,8 +6,8 @@ RSpec.describe Relationship, type: :system do
     @user2 = FactoryBot.create(:user)
     visit root_path
 
-    fill_in 'session[email]', with: @user1.email
-    fill_in 'session[password]', with: @user1.password
+    fill_in 'user[email]', with: @user1.email
+    fill_in 'user[password]', with: @user1.password
     click_button 'ログイン'
   end
 

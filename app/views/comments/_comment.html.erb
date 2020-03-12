@@ -3,7 +3,7 @@
   <p><%= simple_format(comment.comment) %></p>
   <div class="p-comment__bottomLine">
     <span><%= GetDateFormat(comment.created_at) %></span>
-    <% if comment.user_id == @current_user.id %>
+    <% if comment.user_id == current_user.id %>
       <span><%= link_to '削除', comment, style:"margin-left:5px; color:red", method: :delete, data: { confirm: '削除してもよろしいですか？' } %></span>
     <% end %>
   </div>
