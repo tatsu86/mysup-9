@@ -11,8 +11,10 @@
   </head>
 
   <body>
-    <%= render 'header' %>
-    <%= render 'layouts/flash' %>
+    <div class="relative">
+      <%= render 'header' %>
+      <%= render 'layouts/flash' %>
+    </div>
     <%= yield %>
     <% if user_signed_in? %>
       <div class="footer-visible">

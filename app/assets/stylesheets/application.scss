@@ -82,6 +82,22 @@ footer {
   }
 }
 
+.relative {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.flash {
+  left: 0;
+  right: 0;
+  margin: auto;
+  z-index: 100;
+  width: 90%;
+}
+
 .container--sm {
   max-width: 1000px;
   width: 100%;
