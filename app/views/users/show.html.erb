@@ -1,12 +1,4 @@
 <div class="container" style="margin-bottom:60px">
-  <div style="margin-top:10px;">
-    <% if flash[:alert] %>
-      <div class="alert alert-danger"><%= flash[:notice] %></div>
-    <% end %>
-    <% if flash[:success] %>
-      <div class="alert alert-primary"><%= flash[:success] %></div>
-    <% end %>
-  </div>
   <%= render partial: 'profile', locals: { user: @user } %>
   <%= render partial: 'status', locals: { user: @user } %>
   <div class="tabs">

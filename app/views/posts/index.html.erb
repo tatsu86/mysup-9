@@ -1,11 +1,4 @@
 <div class="container--sm bottom-space">
-  <% if flash[:notice] %>
-    <div class="alert alert-danger"><%= flash[:notice] %></div>
-  <% end %>
-  <% if flash[:success] %>
-    <div class="alert alert-primary"><%= flash[:success] %></div>
-  <% end %>
-
   <%= render partial: 'posts/posts', locals: { posts: @posts } %>
   <%= link_to (content_tag(:i, '', class:"fas fa-plus-circle", style:"font-size:50px")), new_post_path, class:"btn-add-tweet" %>
 </div>

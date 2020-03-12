@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
   def create
     comment = Comment.new(comment_params)
     if comment.save
-      flash[:success] = 'コメントを投稿しました。'
+      flash[:notice] = 'コメントを投稿しました。'
       redirect_to "/#{comment.unique_id}/status/#{comment.post_id.to_s}"
     else
       redirect_back fallback_location: root_path, flash: {

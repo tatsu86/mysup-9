@@ -1,10 +1,4 @@
 <div class="container bottom-space">
-  <% if flash[:notice] %>
-    <div class="alert alert-danger"><%= flash[:notice] %></div>
-  <% end %>
-  <% if flash[:success] %>
-    <div class="alert alert-primary"><%= flash[:success] %></div>
-  <% end %>
   <%= render @post %>
   <% if @post.comments.count > 0 %>
     <div class="p-comment__list">

@@ -16,13 +16,6 @@
     <% end %>
   </div>
 
-  <% if flash[:notice] %>
-    <div class="alert alert-danger"><%= flash[:notice] %></div>
-  <% end %>
-  <% if flash[:success] %>
-    <div class="alert alert-primary"><%= flash[:success] %></div>
-  <% end %>
-
   <p style="margin-bottom:0;">アカウント</p>
   <%= render partial: 'users/users', locals: { users: @search_users } %>
   <div style="clear:both;">

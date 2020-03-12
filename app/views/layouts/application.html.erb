@@ -13,6 +13,7 @@
   <body>
     <%= render 'header' %>
     <div class="bg-whitesmoke">
+      <%= render 'layouts/flash' %>
       <%= yield %>
     </div>
     <% if user_signed_in? %>

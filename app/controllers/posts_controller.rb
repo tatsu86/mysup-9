@@ -30,7 +30,7 @@ class PostsController < ApplicationController
   def create 
     post = Post.new(post_params)
     if post.save 
-      flash[:success] = "投稿しました。"
+      flash[:notice] = "投稿しました。"
       redirect_to home_path
     else
       redirect_to new_post_path, flash: {
