@@ -15,9 +15,11 @@
             <p style="color:grey">@<%= post.user.unique_id %></p>
           </div>
         </div>
-        <span style="float:left;">
-          <%= link_to '削除', post, style:"margin-left:5px; color:red", method: :delete, data: { confirm: '削除してもよろしいですか？' } %>
-        </span>
+        <% if current_user?(post.user) %>
+          <span style="float:left;">
+            <%= link_to '削除', post, style:"margin-left:5px; color:red", method: :delete, data: { confirm: '削除してもよろしいですか？' } %>
+          </span>
+        <% end %>
       </div>
     <% end %>
   </div>
