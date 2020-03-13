@@ -12,13 +12,9 @@ Rails.application.routes.draw do
   get ':unique_id/status/:id', to: 'posts#show'
   
   get 'settings/profile', to: 'users#edit'
-  
-  # post 'login', to: 'sessions#create'
-  # delete 'logout', to: 'sessions#destroy'
 
-  
   resources :comments, only: %i[create destroy]
-  resources :users, only: %i[update]
+  resources :users, only: %i[update destroy]
   resources :relationships, only: %i[create destroy]
   resources :likes, only: %i[create destroy]
 

@@ -3,6 +3,10 @@ module ApplicationHelper
     user == current_user
   end
 
+  def test_user?(user)
+    user.unique_id == 'test_user'
+  end
+
   def header_link_item(name, path)
     class_name = 'nav-item'
     class_name << ' active' if current_page?(path)

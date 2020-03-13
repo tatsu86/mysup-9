@@ -1,10 +1,11 @@
 <div class="container" style="margin-bottom:60px">
   <%= form_with model: @user, method: :patch do |f| %>
-    <h1 style="font-size:30px">プロフィール編集
-      <span style="float:right"><%= f.submit '保存', class: 'btn btn-primary' %></span>
-    </h1>
+    <h2>プロフィール編集</h2>
     
     <%= render 'shared/error_messages' %>
+    <% if test_user?(@user) %>
+      <p style="float:clear">※テストユーザーのため、プロフィール編集を一部制限しています</p>
+    <% end %>
     <div class='icon-profile-field' style="opacity:0.75" onClick="$('#file').click()">
       <% if @user.persisted? && @user.image? %>
           <%= image_tag @user.image.to_s, class:'icon-profile-inner' %>  
@@ -17,7 +18,7 @@
     <%= f.file_field :image, class: "icon-profile-inner", style: "display:none;", id: "file" %>
     <div class="form-group">
       <%= f.label :name, 'ユーザー名' %>
-      <%= f.text_field :name, class:"form-control", value: @user.name %>
+      <%= f.text_field :name, class:"form-control", value: @user.name, readonly: test_user?(@user) %>
     </div>
     <div class="form-group">
       <%= f.label :sex, '性別　' %>
@@ -45,5 +46,9 @@
       <%= f.text_field :favorite2, class:"form-control", value: @user.favorite2 %>
       <%= f.text_field :favorite3, class:"form-control", value: @user.favorite3 %>
     </div>
+    <%= f.submit '保存', class: 'btn btn-primary', style: 'width:100%' %>
+  <% end %>
+  <% if test_user?(@user) == false %>
+    <%= link_to 'アカウント削除', @user, style:"margin-left:5px; color:red", method: :delete, data: { confirm: '本当にアカウントを削除しますか？' } %>
   <% end %>
 </div>
