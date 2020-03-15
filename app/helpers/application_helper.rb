@@ -7,6 +7,18 @@ module ApplicationHelper
     user.unique_id == 'test_user'
   end
 
+  def following?(other_user)
+    current_user.followings.include?(other_user)
+  end
+
+  def follower?(other_user)
+    current_user.followers.include?(other_user)
+  end
+
+  def each_follow?(other_user)
+    current_user.followings.include?(other_user) && current_user.followers.include?(other_user)
+  end
+
   def header_link_item(name, path)
     class_name = 'nav-item'
     class_name << ' active' if current_page?(path)

@@ -8,7 +8,11 @@
     </div>
     <div style="float:left; margin-left:10px;">
       <p id="account-name"><%= @user.name %></p>
-      <p class='uniqueid'>@<%= @user.unique_id %></p>
+      <p class='gray'>@
+        <%= @user.unique_id %>
+        <% if follower?(@user) %> <span class="follow-status">フォローされています</span><% end %>
+        <% if each_follow?(user) %><i class="fas fa-link"></i><% end %>
+      </p>
       <p>
         <%= @user.sex %>　
         <% if @user.birthday.nil? == false %>

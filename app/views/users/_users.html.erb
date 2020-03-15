@@ -12,7 +12,11 @@
             </div>
             <div class="user-detail">
               <p class="bold" style="margin-bottom:0;"><%= user.name %></p>
-              <p class="gray">@<%= user.unique_id %></p>
+              <p class="gray">
+                @<%= user.unique_id %>
+                <% if follower?(user) %> <span class="follow-status">フォローされています</span><% end %>
+                <% if each_follow?(user) %><i class="fas fa-link"></i><% end %>
+              </p>
               <p><%= user.introduction %></p>
           </div>
         </div>
