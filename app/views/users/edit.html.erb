@@ -4,13 +4,14 @@
     
     <%= render 'shared/error_messages' %>
     <% if test_user?(@user) %>
-      <p style="float:clear">※テストユーザーのため、プロフィール編集を一部制限しています</p>
+      <p>※テストユーザーのため、プロフィール編集を一部制限しています</p>
     <% end %>
-    <div class='icon-profile-field' style="opacity:0.75" onClick="$('#file').click()">
+    <div class='icon-profile-field' onClick="$('#file').click()">
+      <%# <img id="img_prev" src="#" class="hidden" /> %>
       <% if @user.persisted? && @user.image? %>
-          <%= image_tag @user.image.to_s, class:'icon-profile-inner' %>  
+        <%= image_tag @user.image.to_s, class:'icon-profile-inner', id:'img_prev' %>
       <% else %>
-        <%= image_tag 'unknown.png', class:'icon-profile-inner' %>
+        <%= image_tag 'unknown.png', class:'icon-profile-inner', id:'img_prev' %>
         <%= f.hidden_field :image_cache %>
       <% end %>
       <span class='icon-photo fas fa-image', style="color:white;"></span>
