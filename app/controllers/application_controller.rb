@@ -30,11 +30,12 @@ class ApplicationController < ActionController::Base
     @following_posts = []
     if user_signed_in? 
       
-      follower_ids = []
+      following_ids = []
+      following_ids.push(current_user.id)
       current_user.followings.each do |user|
-        follower_ids.push(user.id)
+        following_ids.push(user.id)
       end
-      @following_posts = Post.where("user_id in (?)", follower_ids)
+      @following_posts = Post.where("user_id in (?)", following_ids)
       @following_posts = @following_posts.order(created_at: :desc).page(params[:page])
     end
   end
