@@ -6,7 +6,7 @@
     <% if test_user?(@user) %>
       <p>※テストユーザーのため、プロフィール編集を一部制限しています</p>
     <% end %>
-    <div class='icon-profile-field', style="opacity:0.75;" onClick="$('#file').click()">
+    <div class='icon-profile-field', style="opacity:0.75;", style="float:clear" onClick="$('#file').click()">
       <% if @user.persisted? && @user.image? %>
         <%= image_tag @user.image.to_s, class:'icon-profile-inner', id:'img_prev' %>
       <% else %>
