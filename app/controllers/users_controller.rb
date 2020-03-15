@@ -18,16 +18,16 @@ class UsersController < ApplicationController
 
   def following
     follow_ids = []
-    current_user.relationships.order(created_at: :desc).each do |relation|
-      follow_ids.push(relation.follow_id)
+    current_user.followings.order(created_at: :desc).each do |user|
+      follow_ids.push(user.id)
     end
     @follows = User.where(id: follow_ids).order(['field(id, ?)', follow_ids])
   end
 
   def followers
     user_ids = []
-    Relationship.where(follow_id: current_user.id).order(created_at: :desc).each do |relation|
-      user_ids.push(relation.user_id)
+    current_user.followers.order(created_at: :desc).each do |user|
+      user_ids.push(user.id)
     end
     @followers = User.where(id: user_ids).order(['field(id, ?)', user_ids])
   end

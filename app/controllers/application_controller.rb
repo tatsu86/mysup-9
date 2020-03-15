@@ -11,14 +11,6 @@ class ApplicationController < ActionController::Base
     root_path
   end
 
-  def after_sign_up_path_for(_resource)
-    current_user
-  end
-
-  def after_inactive_sign_up_path_for(_resource)
-    current_user
-  end
-
   protected
 
   # devise専用のStrongParameter
@@ -34,5 +26,16 @@ class ApplicationController < ActionController::Base
   def posts_all
     @posts = Post.all
     @posts = @posts.order(created_at: :desc).page(params[:page])
+
+    @following_posts = []
+    if user_signed_in? 
+      
+      follower_ids = []
+      current_user.followings.each do |user|
+        follower_ids.push(user.id)
+      end
+      @following_posts = Post.where("user_id in (?)", follower_ids)
+      @following_posts = @following_posts.order(created_at: :desc).page(params[:page])
+    end
   end
 end
