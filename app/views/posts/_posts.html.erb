@@ -3,7 +3,7 @@
     <div class="card", style="padding-top:0.3rem">
       <div class="user-field">
         <%= link_to "./#{post.user.unique_id.to_s}" do %>
-          <div class="icon-post-field" style="float:left;">
+          <div class="icon-post-field">
             <% if post.user.image? %>
               <%= image_tag post.user.image.to_s, class:'icon-user-inner' %>
             <% else %>
@@ -11,13 +11,13 @@
             <% end %>
           </div>
           <div style="float:left;">
-            <p style="color:black; font-weight:bold; margin-bottom:0;"><%= post.user.name %></p> 
-            <p style="color:grey">@<%= post.user.unique_id %></p>
+            <p class="user-name"><%= post.user.name %></p> 
+            <p class="gray">@<%= post.user.unique_id %></p>
           </div>
         <% end %>
       </div>
-      <%= link_to "/#{post.user.unique_id.to_s}/status/#{post.id}", style:'text-decoration:none;' do %>
-        <div style="width:100%; clear:both; margin-top:-10px;">
+      <%= link_to "/#{post.user.unique_id.to_s}/status/#{post.id}" do %>
+        <div style="margin-top:-10px;">
           <% post.tags.each do |tag| %>
             <p class="badge badge-primary"><%= tag.name %></p>
           <% end %>

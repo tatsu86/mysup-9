@@ -18,7 +18,7 @@
 
   <p style="margin-bottom:0;">アカウント</p>
   <%= render partial: 'users/users', locals: { users: @search_users } %>
-  <div style="clear:both;">
+  <div class="both">
     <%= render partial: 'posts/posts', locals: { posts: @search_posts } %>
   </div>
   <%= link_to (content_tag(:i, '', class:"fas fa-plus-circle", style:"font-size:50px")), new_post_path, class:"btn-add-tweet" %>

@@ -4,7 +4,7 @@
       <div class="relative">
         <%= link_to "/#{user.unique_id.to_s}" do %>
           <div class="user-card">
-            <div class="icon-post-field" style="float:left;">
+            <div class="icon-post-field">
               <% if user.image? %>
                 <%= image_tag user.image.to_s, class:'icon-user-inner' %>
               <% else %>
@@ -12,7 +12,7 @@
               <% end %>
             </div>
             <div class="user-detail">
-              <p class="bold" style="margin-bottom:0;"><%= user.name %></p>
+              <p class="user-name"><%= user.name %></p>
               <p class="gray">
                 @<%= user.unique_id %>
                 <% if follower?(user) %> <span class="follow-status">フォローされています</span><% end %>
@@ -22,7 +22,7 @@
             </div>
           </div>
         <% end %>
-        <div class="absolute" style="top:0.5rem; right:0.5rem;">
+        <div class="index-follow-button absolute">
           <%= render partial: 'relationships/follow_button', locals: { user: user } %>
         </div>
       </div>
