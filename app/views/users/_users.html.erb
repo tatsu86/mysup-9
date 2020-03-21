@@ -1,14 +1,15 @@
 <% if users.nil? == false && users.length >= 1 %>
   <div class="user-list">
     <% users.each do |user| %>
-      <%= link_to "/#{user.unique_id.to_s}" do %>
-        <div class="user-card">
-          <div class="icon-post-field" style="float:left;">
-            <% if user.image? %>
-              <%= image_tag user.image.to_s, class:'icon-user-inner' %>
-            <% else %>
-              <%= image_tag 'unknown.png', class:'icon-user-inner' %>
-            <% end %>
+      <div class="relative">
+        <%= link_to "/#{user.unique_id.to_s}" do %>
+          <div class="user-card">
+            <div class="icon-post-field" style="float:left;">
+              <% if user.image? %>
+                <%= image_tag user.image.to_s, class:'icon-user-inner' %>
+              <% else %>
+                <%= image_tag 'unknown.png', class:'icon-user-inner' %>
+              <% end %>
             </div>
             <div class="user-detail">
               <p class="bold" style="margin-bottom:0;"><%= user.name %></p>
@@ -18,9 +19,13 @@
                 <% if each_follow?(user) %><i class="fas fa-link"></i><% end %>
               </p>
               <p><%= user.introduction %></p>
+            </div>
           </div>
+        <% end %>
+        <div class="absolute" style="top:0.5rem; right:0.5rem;">
+          <%= render partial: 'relationships/follow_button', locals: { user: user } %>
         </div>
-      <% end %>
+      </div>
     <% end %>
   </div>
 <% else %>

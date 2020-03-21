@@ -22,7 +22,7 @@ RSpec.describe Relationship, type: :system do
     visit "/#{@user2.unique_id.to_s}"
 
     click_button 'フォローする'
-    click_button 'フォローを外す'
+    click_button 'フォロー解除'
     expect(page).to have_content 'フォローを解除しました'
   end
 end
