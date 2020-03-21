@@ -1,21 +1,18 @@
 <% if posts.length >= 1 %>
   <% posts.each do |post| %>
-    <div class="card">
-      <%# TODO:相対パスで良いのか？ %>
+    <div class="card", style="padding-top:0.3rem">
       <div class="user-field">
         <%= link_to "./#{post.user.unique_id.to_s}" do %>
-          <div style="margin-top:5px;">
-            <div class="icon-post-field" style="float:left;">
-              <% if post.user.image? %>
-                <%= image_tag post.user.image.to_s, class:'icon-user-inner' %>
-              <% else %>
-                <%= image_tag 'unknown.png', class:'icon-user-inner' %>
-              <% end %>
-            </div>
-            <div style="float:left;">
-              <p style="color:black; font-weight:bold; margin-bottom:0;"><%= post.user.name %></p> 
-              <p style="color:grey">@<%= post.user.unique_id %></p>
-            </div>
+          <div class="icon-post-field" style="float:left;">
+            <% if post.user.image? %>
+              <%= image_tag post.user.image.to_s, class:'icon-user-inner' %>
+            <% else %>
+              <%= image_tag 'unknown.png', class:'icon-user-inner' %>
+            <% end %>
+          </div>
+          <div style="float:left;">
+            <p style="color:black; font-weight:bold; margin-bottom:0;"><%= post.user.name %></p> 
+            <p style="color:grey">@<%= post.user.unique_id %></p>
           </div>
         <% end %>
       </div>
@@ -24,8 +21,8 @@
           <% post.tags.each do |tag| %>
             <p class="badge badge-primary"><%= tag.name %></p>
           <% end %>
-          <p style="color:black;"><%= post.body %></p>
-          <div style="color:black;">
+          <p><%= post.body %></p>
+          <% if post.evaluation.nil? == false %>
             おすすめ度：
             <% post.evaluation.to_i.times do |i| %>
               <i class="fas fa-star"></i>
@@ -33,7 +30,7 @@
             <% (5 - post.evaluation.to_i).times do |j| %>
               <i class="far fa-star"></i>
             <% end %>
-          </div>
+          <% end %>
         </div>
         <div class="post-index-comment" style="margin-top:10px;">
           <% if post.likes.find_by(user_id: current_user.id).nil? %>

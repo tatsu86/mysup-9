@@ -30,12 +30,14 @@
       <% end %>
     </div>
     <p class="card-text"><%= simple_format(post.body) %></p>
-    おすすめ度：
-    <i id="evaluation_1", class="far fa-star"></i>
-    <i id="evaluation_2", class="far fa-star"></i>
-    <i id="evaluation_3", class="far fa-star"></i>
-    <i id="evaluation_4", class="far fa-star"></i>
-    <i id="evaluation_5", class="far fa-star"></i>
+    <% if post.evaluation.nil? == false %>
+      おすすめ度：
+      <i id="evaluation_1", class="far fa-star"></i>
+      <i id="evaluation_2", class="far fa-star"></i>
+      <i id="evaluation_3", class="far fa-star"></i>
+      <i id="evaluation_4", class="far fa-star"></i>
+      <i id="evaluation_5", class="far fa-star"></i>
+    <% end %>
   </div>
   <div class="post-show-date" style="padding:0 0 10px 10px">
     <%= GetDateFormat(post.created_at) %>
