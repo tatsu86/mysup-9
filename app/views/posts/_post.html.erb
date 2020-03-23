@@ -10,19 +10,17 @@
       </div>
       <div style="float:left;">
         <p class="user-name"><%= post.user.name %></p> 
-        <p class="grey">@<%= post.user.unique_id %></p>
+        <p class="gray">@<%= post.user.unique_id %></p>
       </div>
       <% if current_user?(post.user) %>
         <%= link_to '削除', post, class:"post-delete", method: :delete, data: { confirm: '削除してもよろしいですか？' } %>
       <% end %>
     <% end %>
   </div>
-  <div class="card-body">
-    <div style="margin-top:-15px;">
-      <% post.tags.each do |tag| %>
-        <span class="badge badge-primary"><%= tag.name %></span>
-      <% end %>
-    </div>
+  <div class="card-body", style="margin-top:-1.2rem">
+    <% post.tags.each do |tag| %>
+      <span class="badge badge-primary"><%= tag.name %></span>
+    <% end %>
     <p class="card-text"><%= simple_format(post.body) %></p>
     <% if post.evaluation.nil? == false %>
       おすすめ度：
@@ -33,20 +31,24 @@
       <i id="evaluation_5", class="far fa-star"></i>
     <% end %>
   </div>
-  <div class="post-show-date" style="padding:0 0 10px 10px">
+  <% if post.image? %>
+    <%= image_tag post.image.to_s %>
+  <% end %>
+
+
+
+  <div class="post-show-date">
     <%= GetDateFormat(post.created_at) %>
   </div>
-  <div>
-    <% if post.likes.find_by(user_id: current_user.id).nil? %>
-      <%= button_to likes_path(post_id: post.id), remote: true do %>
-        <i class="far fa-heart"></i> <%= post.likes.count %>
-      <% end %>
-    <% else %>
-      <%= button_to like_path(post_id: post.id), remote: true, method: :delete do %>
-        <i class="fas fa-heart" style="color:pink"></i> <%= post.likes.count %>
-      <% end %>
+  <% if post.likes.find_by(user_id: current_user.id).nil? %>
+    <%= button_to likes_path(post_id: post.id), remote: true do %>
+      <i class="far fa-heart"></i> <%= post.likes.count %>
     <% end %>
-  </div>
+  <% else %>
+    <%= button_to like_path(post_id: post.id), remote: true, method: :delete do %>
+      <i class="fas fa-heart" style="color:pink"></i> <%= post.likes.count %>
+    <% end %>
+  <% end %>
 </div>
 
 <script>

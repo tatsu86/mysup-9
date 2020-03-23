@@ -9,6 +9,9 @@
     <%= f.text_area :body, rows: 10, class: 'form-control' %>
   </div>
 
+  <%= f.label :image %>
+  <%= f.file_field :image %>
+
   <div class="form-group">
     <span>タグ</span>
     <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>

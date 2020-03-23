@@ -31,6 +31,12 @@ class ImageUploader < CarrierWave::Uploader::Base
   #   # do something
   # end
 
+  # 上限変更
+  process :resize_to_limit => [700, 700]
+
+  # JPGで保存
+  process :convert => 'jpg'
+
   # サムネイル画像
   version :thumb do
     process resize_to_fit: [100, 100]
@@ -40,8 +46,6 @@ class ImageUploader < CarrierWave::Uploader::Base
   def extension_whitelist
     %w(jpg jpeg gif png)
   end
-
-
 
   # 保存するファイルの命名規則
   def filename

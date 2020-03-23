@@ -22,6 +22,7 @@ class Post < ApplicationRecord
   validates :user_id, presence: true
 
   # has_one_attached :image
+  mount_uploader :image, ImageUploader
 
   def self.search(search)
     return all unless search

@@ -32,6 +32,13 @@
             <% end %>
           <% end %>
         </div>
+        <%# TODO: 比率は維持したまま、表示サイズの上限を設ける %>
+        <% if post.image? %>
+          <div class="post-image">
+            <%= image_tag post.image.to_s %>
+          </div>
+        <% end %>
+
         <div class="post-index-comment" style="margin-top:10px;">
           <% if post.likes.find_by(user_id: current_user.id).nil? %>
             <i class="far fa-heart"></i> <%= post.likes.count %>
