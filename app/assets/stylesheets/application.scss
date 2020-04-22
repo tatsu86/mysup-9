@@ -235,6 +235,15 @@ footer {
   color:red;
 }
 
+.heart:hover{
+  color: red;
+  a {
+    color: red;
+    background-color: #FBEFFB;
+    border-radius: 50%;
+  }
+}
+
 //検索画面
 .searchBox {
   width: 500px;
