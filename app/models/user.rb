@@ -9,13 +9,12 @@
 #  email                  :string(255)      not null
 #  unique_id              :string(255)      not null
 #  image                  :string(255)
-#  created_at             :datetime         not null
-#  updated_at             :datetime         not null
 #  sex                    :integer
-#  sweet_tooth            :integer
 #  favorite1              :string(255)
 #  favorite2              :string(255)
 #  favorite3              :string(255)
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
 #  encrypted_password     :string(255)      default(""), not null
 #  reset_password_token   :string(255)
 #  reset_password_sent_at :datetime

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_10_080947) do
+ActiveRecord::Schema.define(version: 2020_03_04_145600) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -37,10 +37,9 @@ ActiveRecord::Schema.define(version: 2020_03_10_080947) do
     t.integer "post_id", null: false
     t.string "comment", null: false
     t.integer "user_id", null: false
+    t.string "unique_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "parent_comment_id"
-    t.string "unique_id", null: false
   end
 
   create_table "likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -65,9 +64,9 @@ ActiveRecord::Schema.define(version: 2020_03_10_080947) do
     t.string "body"
     t.integer "user_id"
     t.string "image"
+    t.float "evaluation"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.float "evaluation", limit: 53
   end
 
   create_table "relationships", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -94,13 +93,12 @@ ActiveRecord::Schema.define(version: 2020_03_10_080947) do
     t.string "email", null: false
     t.string "unique_id", null: false
     t.string "image"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.integer "sex"
-    t.integer "sweet_tooth"
     t.string "favorite1"
     t.string "favorite2"
     t.string "favorite3"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"

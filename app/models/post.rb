@@ -6,9 +6,9 @@
 #  body       :string(255)
 #  user_id    :integer
 #  image      :string(255)
+#  evaluation :float(24)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  evaluation :float(53)
 #
 
 class Post < ApplicationRecord

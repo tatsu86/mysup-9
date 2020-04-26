@@ -7,7 +7,10 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :email, null: false
       t.string :unique_id, null: false
       t.string :image
-      t.string :password_digest, null: false
+      t.integer :sex
+      t.string :favorite1
+      t.string :favorite2
+      t.string :favorite3
 
       t.timestamps
     end
