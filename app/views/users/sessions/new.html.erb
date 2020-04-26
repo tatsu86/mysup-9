@@ -30,7 +30,7 @@
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <%# form_with scope: :session, url: new_user_session_path do |f| %>
           <%= f.hidden_field :email, value:'hayashideveloper@gmail.com' %>
-          <%= f.hidden_field :password, value:'111111' %>
+          <%= f.hidden_field :password, value:'password' %>
           <%= f.submit 'テストユーザーでログイン', class: 'btn btn-success', style:'width:100%; margin-top:5px' %>
         <% end %>
 
